@@ -11,18 +11,106 @@
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
         <style>
-        html, body, #map {
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            margin: 0;
-        }
+            /* Font settings */
+            @font-face {
+                font-family: 'Montserrat';
+                font-weight: 400;
+                src: url('webfonts/Montserrat-Regular.ttf') format('truetype');
+            }
+            @font-face {
+                font-family: 'Montserrat';
+                font-weight: 700;
+                src: url('webfonts/Montserrat-Bold.ttf') format('truetype');
+            }
+            body, .logo-text {
+                font-family: 'Montserrat', sans-serif;
+            }
+
+            /* Layout settings */
+            html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                display: flex;
+            }
+
+            /* Main map container to occupy 75% of the screen */
+            #map-container {
+                width: 75%;
+                height: 100vh;
+                position: relative;
+            }
+
+            /* Side panel for 25% of the screen on the right */
+            #sidebar {
+                width: 25%;
+                height: 100vh;
+                padding: 20px;
+                background-color: #f7f7f7;
+                color: #333;
+                font-family: 'Montserrat', sans-serif;
+                font-size: 16px;
+                overflow-y: auto;
+                border-left: 1px solid #ccc;
+            }
+
+            /* Styling for the map */
+            #map {
+                width: 100%;
+                height: 100%;
+            }
+
+            /* Container for logo and text */
+            .logo-container {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                margin-top: 20px;
+                margin-right: 20px;
+            }
+            .logo-container img {
+                width: 80px;
+                height: auto;
+                margin-right: 20px;
+            }
+            .logo-text {
+                font-weight: 700;
+                color: #275892;
+                text-align: left;
+            }
         </style>
+
+
+
+
         <title>Мапа розподілу</title>
     </head>
     <body>
-        <div id="map">
+
+    <!-- Map container on the left (75%) -->
+    <div id="map-container">
+        <div id="map"></div>
+        <div class="logo-container">
+            <img src="images/logo.png" alt="Logo">
+            <div class="logo-text">
+                <div>СЛУЖБА</div>
+                <div>БЕЗПЕКИ</div>
+                <div>УКРАЇНИ</div>
+            </div>
         </div>
+    </div>
+
+    <!-- Right sidebar (25%) -->
+    <div id="sidebar">
+        <h3>Information Panel</h3>
+        <p>This sidebar can be used to display information, charts, and other data related to the selected region.</p>
+        <!-- Add more content here as needed -->
+    </div>
+
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
         <script src="js/L.Control.Layers.Tree.min.js"></script>
@@ -185,7 +273,7 @@
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 5.0, 
+                weight: 5.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(0,87,184,1.0)',
