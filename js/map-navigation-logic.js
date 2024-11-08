@@ -5,38 +5,9 @@ let highlightLayer;
 const map = L.map('map', {
     zoomControl: false,
     maxZoom: 8,
-    minZoom: 6,
-    tileSize: 512,
-    keepBuffer: 2,
-    preferCanvas: true
+    minZoom: 5,
+    zoom: 5  // Set initial zoom level to 5
 });
-
-// function highlightFeature(e) {
-//     // Reset the previously highlighted region if it exists
-//     if (highlightLayer) {
-//         highlightLayer.setStyle({
-//             color: 'rgba(255,223,0,1.0)',  // Original border color
-//             fillColor: 'rgba(0,87,184,1.0)',  // Original fill color
-//             fillOpacity: 1  // Original fill opacity
-//         });
-//     }
-//     highlightLayer = e.target;  // Set the new highlight layer
-//
-//     // Apply the highlight style to the clicked region
-//     highlightLayer.setStyle({
-//         color: 'rgba(255,223,0,1.0)',  // Highlight border color
-//         fillColor: '#008000',  // Highlight fill color
-//         fillOpacity: 1  // Highlight fill opacity
-//     });
-//
-//     // Center and zoom the map on the clicked feature
-//     const bounds = highlightLayer.getBounds();
-//     map.flyToBounds(bounds, {
-//         maxZoom: 8,  // Adjust maxZoom as needed
-//         animate: true
-//     });
-// }
-
 
 function highlightOnHoverFeature(e) {
     // Only change style if the hovered layer is not the currently highlighted (clicked) layer
@@ -86,35 +57,6 @@ function highlightFeature(e) {
 
 }
 
-
-//
-// function highlightOnHoverFeature(e) {
-//     // Reset the previously highlighted region if it exists
-//     if (highlightLayer) {
-//
-//         highlightLayer.setStyle({
-//             color: 'rgba(255,223,0,1.0)',  // Original border color
-//             fillColor: 'rgba(0,87,184,1.0)',  // Original fill color
-//             fillOpacity: 1  // Original fill opacity
-//         });
-//     }
-//     highlightLayer = e.target;  // Set the new highlight layer
-//     // Apply the highlight style to the clicked region
-//     highlightLayer.setStyle({
-//         color: 'rgba(255,223,0,1.0)',  // Highlight border color
-//         fillColor: '#008000',  // Highlight fill color
-//         fillOpacity: 1  // Highlight fill opacity
-//     });
-// }
-
-
-
-
-
-
-
-
-
 const layer_ukr_admbnda_adm1_sspe_20240416_0 = new L.geoJson(json_ukr_admbnda_adm1_sspe_20240416_0, {
     attribution: '',
     interactive: true,
@@ -150,10 +92,12 @@ const bounds_group = new L.featureGroup([]);
 
 function setBounds() {
     if (bounds_group.getLayers().length) {
-        map.fitBounds(bounds_group.getBounds());
+        //map.fitBounds(bounds_group.getBounds());
     }
     map.setMaxBounds(map.getBounds());
 }
+
+map.setView([48.3794, 31.1656], 5); // Coordinates for the center of your map, with zoom level 5
 
 
 function pop_ukr_admbnda_adm1_sspe_20240416_0(feature, layer) {
@@ -198,7 +142,7 @@ function updateTooltips() {
                     {
                         direction: "auto",
                         permanent: "true",
-                        offset: [-25, -70],
+                        offset: [0, 0],
                         className: 'css_ukr_admbnda_adm1_sspe_20240416_0'
                     }
                 );
