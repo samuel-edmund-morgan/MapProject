@@ -1,0 +1,95 @@
+/* Font settings */
+@font-face {
+    font-family: 'Montserrat';
+    font-weight: 400;
+    src: url('webfonts/Montserrat-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    src: url('webfonts/Montserrat-Bold.ttf') format('truetype');
+}
+
+body, .logo-text {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Layout settings */
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+/* Main map container to occupy 75% of the screen */
+#map-container {
+    width: 75%;
+    height: 100vh;
+    position: relative;
+}
+
+/* Side panel for 25% of the screen on the right */
+#sidebar {
+    width: 25%;
+    height: 100vh;
+    padding: 20px;
+    background-color: #f7f7f7;
+    color: #333;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    overflow-y: auto;
+    border-left: 1px solid #ccc;
+}
+
+#region-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#region-list li {
+    padding: 5px 0;
+    color: #275892;
+    font-weight: 700;
+}
+
+#region-list li:hover {
+    color: #007BFF;
+    text-decoration: underline;
+}
+
+/* Styling for the map */
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+/* Container for logo and text */
+.logo-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-right: 20px;
+    padding: 10px; /* Add padding for spacing */
+    background-color: rgba(251, 244, 236, 0.7); /* Set background color */
+    border-radius: 8px; /* Round the corners */
+}
+
+.logo-container img {
+    width: 80px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.logo-text {
+    font-weight: 700;
+    color: #275892;
+    text-align: left;
+}
+
