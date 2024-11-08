@@ -1,6 +1,7 @@
 // noinspection TypeScriptUMDGlobal
 
 let highlightLayer;
+const regionNameElement = document.getElementById('region-name');
 
 const map = L.map('map', {
     zoomControl: false,
@@ -48,6 +49,10 @@ function highlightFeature(e) {
         fillOpacity: 1  // Highlight fill opacity
     });
 
+    // Update the region name in `top-left-div`
+    const regionName = e.target.feature.properties['SSU'];
+    regionNameElement.textContent = regionName || "Ukraine";
+
     // Center and zoom the map on the clicked feature
     const bounds = highlightLayer.getBounds();
     map.flyToBounds(bounds, {
@@ -67,8 +72,24 @@ const layer_ukr_admbnda_adm1_sspe_20240416_0 = new L.geoJson(json_ukr_admbnda_ad
     style: style_ukr_admbnda_adm1_sspe_20240416_0_0,
 });
 
+function zoomOutToUkraine() {
+    map.setView([48.3794, 31.1656], 5);  // Center on Ukraine with zoom level 7
+    document.getElementById('region-name').textContent = "Україна";  // Set text in top-left-div
+}
+
 function populateRegionList() {
     const regionList = document.getElementById('regions');
+
+
+    // Add "Загальний" item
+    const generalItem = document.createElement('li');
+    generalItem.textContent = "Загальна мапа України";
+    generalItem.style.cursor = 'pointer';
+    generalItem.onclick = zoomOutToUkraine;  // Attach zoom-out functionality
+    regionList.appendChild(generalItem);
+
+
+
     layer_ukr_admbnda_adm1_sspe_20240416_0.eachLayer(function(layer) {
         const regionName = layer.feature.properties['SSU'];
         if (regionName) {
@@ -181,4 +202,11 @@ map.on("layeradd", function(){
 });
 map.on("layerremove", function(){
     resetLabels([layer_ukr_admbnda_adm1_sspe_20240416_0]);
+});
+
+// Reset the region name to "Ukraine" when deselecting
+map.on('click', function () {
+    if (!highlightLayer) {
+        regionNameElement.textContent = "Україна";
+    }
 });

@@ -2,13 +2,13 @@
 @font-face {
     font-family: 'Montserrat';
     font-weight: 400;
-    src: url('webfonts/Montserrat-Regular.ttf') format('truetype');
+    src: url('../webfonts/Montserrat-Regular.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Montserrat';
     font-weight: 700;
-    src: url('webfonts/Montserrat-Bold.ttf') format('truetype');
+    src: url('../webfonts/Montserrat-Bold.ttf') format('truetype');
 }
 
 body, .logo-text {
@@ -178,4 +178,22 @@ html, body {
     margin-left: 5%;
 }
 
+#top-left-div h3 {
+    font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
+    font-weight: 700;
+    color: #275892; /* Text color */
+    text-align: center; /* Center text horizontally */
+    margin: 0; /* Reset default margin */
+    padding: 10px 0; /* Add padding for spacing */
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; /* Text strokes */
+}
 
+#sidebar h3 {
+    font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
+    font-weight: 700;
+    color: #275892; /* Text color */
+    text-align: center; /* Center text horizontally */
+    margin: 0; /* Reset default margin */
+    padding: 10px 0; /* Add padding for spacing */
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; /* Text strokes */
+}
