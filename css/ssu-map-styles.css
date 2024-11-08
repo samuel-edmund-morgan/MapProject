@@ -31,33 +31,54 @@ html, body {
     position: relative;
 }
 
-/* Side panel for 25% of the screen on the right */
+/* Sidebar styling */
 #sidebar {
     width: 25%;
     height: 100vh;
     padding: 20px;
-    background-color: #f7f7f7;
+    background-color: #bedfff;
     color: #333;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     overflow-y: auto;
-    border-left: 1px solid #ccc;
+    border-left: 1px solid #5597d3;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for appeal */
 }
 
+/* List container styling */
 #region-list ul {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
+/* Letterbox styling for each list item */
 #region-list li {
-    padding: 5px 0;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #5597d3;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     color: #275892;
     font-weight: 700;
+    text-align: center;
 }
 
+/* Background colors for alternating items */
+#region-list li:nth-child(odd) {
+    background-color: #7bbfff;
+}
+
+#region-list li:nth-child(even) {
+    background-color: #bedfff;
+}
+
+/* Hover effect for each item */
 #region-list li:hover {
     color: #007BFF;
     text-decoration: underline;
+    background-color: #a2d8ff; /* Slightly lighter shade on hover */
 }
 
 /* Styling for the map */
