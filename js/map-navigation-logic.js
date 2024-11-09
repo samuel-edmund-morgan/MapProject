@@ -5,10 +5,23 @@ const regionNameElement = document.getElementById('region-name');
 
 const map = L.map('map', {
     zoomControl: false,
-    maxZoom: 8,
+    maxZoom: 7,
     minZoom: 5,
-    zoom: 5  // Set initial zoom level to 5
+    zoom: 5,  // Set initial zoom level to 5
+    preferCanvas: true,  // Switch to Canvas rendering for smoother map interactions
+    continuousWorld: true,
+    noWrap: true
 });
+
+
+L.tileLayer('Tiles/{z}/{x}/{y}.png', {
+    maxZoom: 7,
+    minZoom: 5,
+    noWrap: true,
+    updateWhenIdle: true,
+    keepBuffer: 400  // Higher buffer for smoother dragging
+}).addTo(map);
+
 
 function highlightOnHoverFeature(e) {
     // Only change style if the hovered layer is not the currently highlighted (clicked) layer
@@ -56,7 +69,7 @@ function highlightFeature(e) {
     // Center and zoom the map on the clicked feature
     const bounds = highlightLayer.getBounds();
     map.flyToBounds(bounds, {
-        maxZoom: 8,  // Adjust maxZoom as needed
+        maxZoom: 7,  // Adjust maxZoom as needed
         animate: true
     });
 
@@ -65,6 +78,7 @@ function highlightFeature(e) {
 const layer_ukr_admbnda_adm1_sspe_20240416_0 = new L.geoJson(json_ukr_admbnda_adm1_sspe_20240416_0, {
     attribution: '',
     interactive: true,
+    keepBuffer: 4,
     dataVar: 'json_ukr_admbnda_adm1_sspe_20240416_0',
     layerName: 'layer_ukr_admbnda_adm1_sspe_20240416_0',
     pane: 'pane_ukr_admbnda_adm1_sspe_20240416_0',
@@ -180,23 +194,27 @@ function updateTooltips() {
 setBounds();
 populateRegionList();
 
-layer_ukr_admbnda_adm1_sspe_20240416_0.eachLayer(function(layer) {
-    layer.bindTooltip(
-        (layer.feature.properties['ADM1_UA'] !== null
-            ? String('<div style="color: #ffffff; font-size: 10pt; font-weight: bold; font-family: \'Montserrat\', sans-serif; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">' + layer.feature.properties['ADM1_UA']) + '</div>'
-            : ''),
-        {
-            direction: "auto",
-            //permanent: true,
-            offset: [-25, -70],
-            className: 'css_ukr_admbnda_adm1_sspe_20240416_0'
-        }
-    );
-});
+// layer_ukr_admbnda_adm1_sspe_20240416_0.eachLayer(function(layer) {
+//     layer.bindTooltip(
+//         (layer.feature.properties['ADM1_UA'] !== null
+//             ? String('<div style="color: #ffffff; font-size: 10pt; font-weight: bold; font-family: \'Montserrat\', sans-serif; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">' + layer.feature.properties['ADM1_UA']) + '</div>'
+//             : ''),
+//         {
+//             direction: "auto",
+//             //permanent: true,
+//             offset: [-25, -70],
+//             className: 'css_ukr_admbnda_adm1_sspe_20240416_0'
+//         }
+//     );
+// });
 resetLabels([layer_ukr_admbnda_adm1_sspe_20240416_0]);
-map.on("zoomend", updateTooltips);
+
+//If want tooltips - enable
+//map.on("zoomend", updateTooltips);
+
 // Initial call to set the tooltip visibility on page load
-updateTooltips();
+//updateTooltips();
+
 map.on("layeradd", function(){
     resetLabels([layer_ukr_admbnda_adm1_sspe_20240416_0]);
 });
