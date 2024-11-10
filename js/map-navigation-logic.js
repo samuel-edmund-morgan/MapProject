@@ -10,14 +10,14 @@ const map = L.map('map', {
     zoom: 5,  // Set initial zoom level to 5
     preferCanvas: true,  // Switch to Canvas rendering for smoother map interactions
     continuousWorld: true,
-    noWrap: true
+    noWrap: false
 });
 
 
 L.tileLayer('Tiles/{z}/{x}/{y}.png', {
     maxZoom: 7,
     minZoom: 5,
-    noWrap: true,
+    noWrap: false,
     updateWhenIdle: true,
     keepBuffer: 400  // Higher buffer for smoother dragging
 }).addTo(map);
@@ -126,9 +126,9 @@ zoomControl.addTo(map);
 const bounds_group = new L.featureGroup([]);
 
 function setBounds() {
-    if (bounds_group.getLayers().length) {
-        //map.fitBounds(bounds_group.getBounds());
-    }
+    // if (bounds_group.getLayers().length) {
+    //     map.fitBounds(bounds_group.getBounds());
+    // }
     map.setMaxBounds(map.getBounds());
 }
 
