@@ -1,7 +1,73 @@
 // noinspection TypeScriptUMDGlobal
 
+
 let highlightLayer;
 const regionNameElement = document.getElementById('region-name');
+
+// Elements for file selection
+const selectFileButton = document.getElementById('select-file');
+const uploadFileButton = document.getElementById('upload-file');
+let selectedFile;
+
+
+// Event listener to open file dialog
+selectFileButton.addEventListener('click', () => {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = '.xlsx';
+    fileInput.onchange = (event) => {
+        selectedFile = event.target.files[0];
+        if (selectedFile) {
+            uploadFileButton.disabled = false; // Enable the upload button
+        }
+    };
+    fileInput.click();
+});
+
+uploadFileButton.addEventListener('click', () => {
+    if (selectedFile) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const data = new Uint8Array(event.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+
+            // Loop through each sheet in the workbook
+            const sheetData = {};
+            workbook.SheetNames.forEach((sheetName) => {
+                const sheet = workbook.Sheets[sheetName];
+                const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+                // Store data by sheet name
+                sheetData[sheetName] = jsonData;
+            });
+
+            console.log(sheetData); // Check parsed data in console
+            // Now proceed to use sheetData within highlightFeature or other functions
+        };
+        reader.readAsArrayBuffer(selectedFile);
+        uploadFileButton.disabled = true; // Disable upload after processing
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const map = L.map('map', {
     zoomControl: false,
@@ -45,6 +111,17 @@ function resetHoverFeature(e) {
     }
 }
 
+
+// Define a zoom level for each region by ID
+const zoomLevels = {
+    "0": 5, // Unique zoom level for ID 0
+    ...Array.from({ length: 24 }, (_, i) => i + 1).reduce((acc, id) => {
+        acc[id] = 7;
+        return acc;
+    }, {})
+};
+
+
 function highlightFeature(e) {
     // Reset the previously highlighted region if it exists
     if (highlightLayer) {
@@ -62,14 +139,17 @@ function highlightFeature(e) {
         fillOpacity: 1  // Highlight fill opacity
     });
 
+    // Get the region's ID and use it to determine the zoom level
+    const regionId = e.target.feature.properties['id'];
+    const zoomLevel = zoomLevels[regionId] || 7; // Default zoom level if ID is not in the map
     // Update the region name in `top-left-div`
     const regionName = e.target.feature.properties['SSU'];
-    regionNameElement.textContent = regionName || "Ukraine";
+    regionNameElement.textContent = regionName || "Служба безпеки України";
 
-    // Center and zoom the map on the clicked feature
+    // Center and zoom the map on the selected feature with custom zoom level
     const bounds = highlightLayer.getBounds();
     map.flyToBounds(bounds, {
-        maxZoom: 7,  // Adjust maxZoom as needed
+        maxZoom: zoomLevel,
         animate: true
     });
 
@@ -87,34 +167,8 @@ const layer_ukr_admbnda_adm1_sspe_20240416_0 = new L.geoJson(json_ukr_admbnda_ad
 });
 
 
-function zoomOutToUkraine() {
-    // Reset the highlighted region if it exists
-    if (highlightLayer) {
-        highlightLayer.setStyle({
-            color: 'rgba(255,223,0,1.0)',  // Original border color
-            fillColor: 'rgba(0,87,184,1.0)',  // Original fill color
-            fillOpacity: 1  // Original fill opacity
-        });
-        highlightLayer = null; // Clear the highlightLayer variable
-    }
-
-    map.setView([48.3794, 31.1656], 5);  // Center on Ukraine with zoom level 5
-    document.getElementById('region-name').textContent = "Україна";  // Set text in top-left-div
-}
-
 function populateRegionList() {
     const regionList = document.getElementById('regions');
-
-
-    // Add "Загальний" item
-    const generalItem = document.createElement('li');
-    generalItem.textContent = "Загальна мапа України";
-    generalItem.style.cursor = 'pointer';
-    generalItem.onclick = zoomOutToUkraine;  // Attach zoom-out functionality
-    regionList.appendChild(generalItem);
-
-
-
     layer_ukr_admbnda_adm1_sspe_20240416_0.eachLayer(function(layer) {
         const regionName = layer.feature.properties['SSU'];
         if (regionName) {
@@ -174,68 +228,12 @@ map.getPane('pane_ukr_admbnda_adm1_sspe_20240416_0').style.zIndex = 400;
 map.getPane('pane_ukr_admbnda_adm1_sspe_20240416_0').style['mix-blend-mode'] = 'normal';
 bounds_group.addLayer(layer_ukr_admbnda_adm1_sspe_20240416_0);
 map.addLayer(layer_ukr_admbnda_adm1_sspe_20240416_0);
-
-function updateTooltips() {
-    const currentZoom = map.getZoom();
-    layer_ukr_admbnda_adm1_sspe_20240416_0.eachLayer(function(layer) {
-        if (currentZoom === 8) {
-            // Bind tooltip only at zoom level 8
-            if (!layer.getTooltip()) {
-                layer.bindTooltip(
-                    layer.feature.properties['ADM1_UA'] !== null
-                        ? String('<div style="color: #ffffff; font-size: 10pt; font-weight: bold; font-family: \'Montserrat\', sans-serif; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">' + layer.feature.properties['ADM1_UA']) + '</div>'
-                        : '',
-                    {
-                        direction: "auto",
-                        permanent: "true",
-                        offset: [0, 0],
-                        className: 'css_ukr_admbnda_adm1_sspe_20240416_0'
-                    }
-                );
-                layer.openTooltip();
-            }
-        } else {
-            // Unbind tooltip at other zoom levels
-            if (layer.getTooltip()) {
-                layer.unbindTooltip();
-            }
-        }
-    });
-}
 setBounds();
 populateRegionList();
-
-// layer_ukr_admbnda_adm1_sspe_20240416_0.eachLayer(function(layer) {
-//     layer.bindTooltip(
-//         (layer.feature.properties['ADM1_UA'] !== null
-//             ? String('<div style="color: #ffffff; font-size: 10pt; font-weight: bold; font-family: \'Montserrat\', sans-serif; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">' + layer.feature.properties['ADM1_UA']) + '</div>'
-//             : ''),
-//         {
-//             direction: "auto",
-//             //permanent: true,
-//             offset: [-25, -70],
-//             className: 'css_ukr_admbnda_adm1_sspe_20240416_0'
-//         }
-//     );
-// });
 resetLabels([layer_ukr_admbnda_adm1_sspe_20240416_0]);
-
-//If want tooltips - enable
-//map.on("zoomend", updateTooltips);
-
-// Initial call to set the tooltip visibility on page load
-//updateTooltips();
-
 map.on("layeradd", function(){
     resetLabels([layer_ukr_admbnda_adm1_sspe_20240416_0]);
 });
 map.on("layerremove", function(){
     resetLabels([layer_ukr_admbnda_adm1_sspe_20240416_0]);
-});
-
-// Reset the region name to "Ukraine" when deselecting
-map.on('click', function () {
-    if (!highlightLayer) {
-        regionNameElement.textContent = "Україна";
-    }
 });
