@@ -163,6 +163,7 @@ html, body {
     z-index: 1001; /* Ensures it stays on top */
 }
 
+
 #top-left-div {
     position: absolute;
     top: 20px;
@@ -175,8 +176,24 @@ html, body {
     opacity: 0.8;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Light shadow */
     z-index: 1001; /* Ensure it's above the map */
+    padding: 4px; /* Adds padding around content */
+    display: flex;
+    align-items: center; /* Center text vertically */
+    justify-content: center; /* Center text horizontally */
+    color: #275892;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     margin-left: 5%;
 }
+
+
+
+
+
+
+
 
 #top-left-div h3 {
     font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
@@ -187,6 +204,10 @@ html, body {
     padding: 10px 0; /* Add padding for spacing */
     text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; /* Text strokes */
 }
+
+
+
+
 
 #sidebar h3 {
     font-family: 'Montserrat', sans-serif; /* Use Montserrat font */

@@ -17,7 +17,7 @@ const map = L.map('map', {
 L.tileLayer('Tiles/{z}/{x}/{y}.png', {
     maxZoom: 7,
     minZoom: 5,
-    noWrap: false,
+    noWrap: true,
     updateWhenIdle: true,
     keepBuffer: 400  // Higher buffer for smoother dragging
 }).addTo(map);
@@ -87,7 +87,17 @@ const layer_ukr_admbnda_adm1_sspe_20240416_0 = new L.geoJson(json_ukr_admbnda_ad
 });
 
 function zoomOutToUkraine() {
-    map.setView([48.3794, 31.1656], 5);  // Center on Ukraine with zoom level 7
+    // Reset the highlighted region if it exists
+    if (highlightLayer) {
+        highlightLayer.setStyle({
+            color: 'rgba(255,223,0,1.0)',  // Original border color
+            fillColor: 'rgba(0,87,184,1.0)',  // Original fill color
+            fillOpacity: 1  // Original fill opacity
+        });
+        highlightLayer = null; // Clear the highlightLayer variable
+    }
+
+    map.setView([48.3794, 31.1656], 5);  // Center on Ukraine with zoom level 5
     document.getElementById('region-name').textContent = "Україна";  // Set text in top-left-div
 }
 
