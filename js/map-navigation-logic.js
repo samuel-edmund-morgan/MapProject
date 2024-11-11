@@ -86,6 +86,7 @@ const layer_ukr_admbnda_adm1_sspe_20240416_0 = new L.geoJson(json_ukr_admbnda_ad
     style: style_ukr_admbnda_adm1_sspe_20240416_0_0,
 });
 
+
 function zoomOutToUkraine() {
     // Reset the highlighted region if it exists
     if (highlightLayer) {
