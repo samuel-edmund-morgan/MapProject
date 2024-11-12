@@ -6,14 +6,99 @@ const regionNameElement = document.getElementById('region-name');
 // Elements for file selection
 const selectFileButton = document.getElementById('select-file');
 const uploadFileButton = document.getElementById('upload-file');
-//const fileInput = document.getElementById('file-input');
 const fileInput = document.createElement('input');
-
 let selectedFile;
-
 let excelData = {}; // Store parsed data
 
+// Define chart variables
+let pieChart, columnChart;
 
+// Initialize charts once when the page loads
+function initCharts() {
+    const pieCtx = document.getElementById('pie-chart-canvas').getContext('2d');
+    pieChart = new Chart(pieCtx, {
+        type: 'pie',
+        data: {
+            labels: [],
+            datasets: [{
+                data: [],
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
+            }]
+        },
+        options: {
+            responsive: true,
+            onClick: (e, elements) => {
+                if (elements.length) {
+                    const categoryIndex = elements[0].index;
+                    updateColumnChart(categoryIndex);
+                }
+            }
+        }
+    });
+
+    const columnCtx = document.getElementById('column-chart-canvas').getContext('2d');
+    columnChart = new Chart(columnCtx, {
+        type: 'bar',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Values',
+                data: [],
+                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+// Function to update the pie chart based on selected region
+function updatePieChart(regionId) {
+    let pieLabels = [];
+    let pieData = [];
+
+    // Populate pie chart data from all sheets for selected region
+    for (const sheetName in excelData) {
+        const sheet = excelData[sheetName];
+        const regionData = sheet.regions[regionId];
+
+        if (regionData) {
+            //pieLabels.push(sheet.categories); // Category names
+            pieLabels = sheet.categories; // Directly use the categories from C1 as labels
+            const totalValue = regionData.values.reduce((a, b) => a + b, 0);
+            pieData.push(totalValue);
+        }
+    }
+
+    pieChart.data.labels = pieLabels;
+    pieChart.data.datasets[0].data = pieData;
+    pieChart.update();
+}
+
+// Function to update column chart based on selected category
+function updateColumnChart(categoryIndex) {
+    let columnLabels = [];
+    let columnData = [];
+
+    for (const sheetName in excelData) {
+        const sheet = excelData[sheetName];
+        const regionData = sheet.regions[lastRegionId];
+        if (regionData) {
+            columnLabels = sheet.categories;
+            columnData.push(regionData.values[categoryIndex]);
+        }
+    }
+
+    columnChart.data.labels = columnLabels;
+    columnChart.data.datasets[0].data = columnData;
+    columnChart.update();
+}
 
 fileInput.type = 'file';
 fileInput.accept = '.xlsx';
@@ -27,6 +112,11 @@ fileInput.onchange = (event) => {
 selectFileButton.addEventListener('click', () => {
     fileInput.click();
 });
+
+
+// Call initCharts once to initialize the charts
+initCharts();
+
 
 uploadFileButton.addEventListener('click', () => {
     if (selectedFile) {
@@ -62,15 +152,18 @@ uploadFileButton.addEventListener('click', () => {
 
             // Display data for regionId 0 after upload
             const regionId = 0;
-            for (const sheetName in excelData) {
-                const sheet = excelData[sheetName];
-                const regionData = sheet.regions[regionId];
-
-                if (regionData) {
-                    console.log(`Initial data for region ${regionId} in ${sheetName}:`, regionData);
-                    // Here you can add data to chart update functions
-                }
-            }
+            updatePieChart(regionId); // Update pie chart for regionId 0 initially
+            // for (const sheetName in excelData) {
+            //     const sheet = excelData[sheetName];
+            //     const regionData = sheet.regions[regionId];
+            //
+            //     if (regionData) {
+            //         console.log(`Initial data for region ${regionId} in ${sheetName}:`, regionData);
+            //         // Here you can add data to chart update functions
+            //         initCharts()
+            //     }
+            // }
+            //updatePieChart(regionId);
 
         };
         reader.readAsArrayBuffer(selectedFile);
@@ -183,6 +276,8 @@ function highlightFeature(e) {
             // Here you can add data to chart update functions
         }
     }
+
+    updatePieChart(regionId);
 
 }
 

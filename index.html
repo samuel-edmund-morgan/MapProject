@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="css/qgis2web.css">
     <link rel="stylesheet" href="css/fontawesome-all.min.css">
     <link rel="stylesheet" href="css/ssu-map-styles.css">
+    <script src="js/chart.js"></script>
+
     <title>Мапа розподілу</title>
 </head>
 <body>
@@ -24,8 +26,12 @@
         </div>
     </div>
     <div id="top-center-div"></div>
-    <div id="bottom-left-div"></div>
-    <div id="bottom-right-div"></div>
+    <div id="bottom-left-div">
+        <canvas id="pie-chart-canvas" width="600" height="600"></canvas>
+    </div>
+    <div id="bottom-right-div">
+        <canvas id="column-chart-canvas" width="600" height="600"></canvas>
+    </div>
     <div id="bottom-center-div">
         <button id="select-file">Select Excel File</button>
         <button id="upload-file" disabled>Upload File</button>
