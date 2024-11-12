@@ -6,7 +6,8 @@ const regionNameElement = document.getElementById('region-name');
 // Elements for file selection
 const selectFileButton = document.getElementById('select-file');
 const uploadFileButton = document.getElementById('upload-file');
-const fileInput = document.getElementById('file-input');
+//const fileInput = document.getElementById('file-input');
+const fileInput = document.createElement('input');
 
 let selectedFile;
 
@@ -14,17 +15,16 @@ let excelData = {}; // Store parsed data
 
 
 
+fileInput.type = 'file';
+fileInput.accept = '.xlsx';
+fileInput.onchange = (event) => {
+    selectedFile = event.target.files[0];
+    if (selectedFile) {
+        uploadFileButton.disabled = false; // Enable the upload button
+    }
+};
 // Event listener to open file dialog
 selectFileButton.addEventListener('click', () => {
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.accept = '.xlsx';
-    fileInput.onchange = (event) => {
-        selectedFile = event.target.files[0];
-        if (selectedFile) {
-            uploadFileButton.disabled = false; // Enable the upload button
-        }
-    };
     fileInput.click();
 });
 
@@ -59,35 +59,24 @@ uploadFileButton.addEventListener('click', () => {
                 excelData[sheetName] = sheetObj;
             });
 
-            //console.log("Data Parsed Successfully:", excelData);
+
+            // Display data for regionId 0 after upload
+            const regionId = 0;
+            for (const sheetName in excelData) {
+                const sheet = excelData[sheetName];
+                const regionData = sheet.regions[regionId];
+
+                if (regionData) {
+                    console.log(`Initial data for region ${regionId} in ${sheetName}:`, regionData);
+                    // Here you can add data to chart update functions
+                }
+            }
+
         };
         reader.readAsArrayBuffer(selectedFile);
         uploadFileButton.disabled = true; // Disable upload after processin
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 const map = L.map('map', {
     zoomControl: false,
@@ -141,8 +130,19 @@ const zoomLevels = {
     }, {})
 };
 
+let lastRegionId = null; // Track the last selected region
 
 function highlightFeature(e) {
+
+    const regionId = e.target.feature.properties['id'];
+
+    // Check if the clicked region is the same as the last selected region
+    if (regionId === lastRegionId) return;
+
+    // Update the last selected region
+    lastRegionId = regionId;
+
+
     // Reset the previously highlighted region if it exists
     if (highlightLayer) {
         highlightLayer.setStyle({
@@ -160,7 +160,7 @@ function highlightFeature(e) {
     });
 
     // Get the region's ID and use it to determine the zoom level
-    const regionId = e.target.feature.properties['id'];
+    //const regionId = e.target.feature.properties['id'];
     const zoomLevel = zoomLevels[regionId] || 7; // Default zoom level if ID is not in the map
     // Update the region name in `top-left-div`
     const regionName = e.target.feature.properties['SSU'];
