@@ -1,13 +1,17 @@
 // noinspection TypeScriptUMDGlobal
 
-
 let highlightLayer;
 const regionNameElement = document.getElementById('region-name');
 
 // Elements for file selection
 const selectFileButton = document.getElementById('select-file');
 const uploadFileButton = document.getElementById('upload-file');
+const fileInput = document.getElementById('file-input');
+
 let selectedFile;
+
+let excelData = {}; // Store parsed data
+
 
 
 // Event listener to open file dialog
@@ -27,27 +31,43 @@ selectFileButton.addEventListener('click', () => {
 uploadFileButton.addEventListener('click', () => {
     if (selectedFile) {
         const reader = new FileReader();
-        reader.onload = (event) => {
-            const data = new Uint8Array(event.target.result);
+        reader.onload = (e) => {
+            const data = new Uint8Array(e.target.result);
             const workbook = XLSX.read(data, { type: 'array' });
 
-            // Loop through each sheet in the workbook
-            const sheetData = {};
+            // Parse each sheet and store structured data
             workbook.SheetNames.forEach((sheetName) => {
-                const sheet = workbook.Sheets[sheetName];
-                const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+                const worksheet = workbook.Sheets[sheetName];
+                const sheetData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
-                // Store data by sheet name
-                sheetData[sheetName] = jsonData;
+                // Process rows and columns as per your file structure
+                const categoryNames = sheetData[1].slice(2); // Extract column names
+                const sheetObj = { categories: categoryNames, regions: {} };
+
+                for (let i = 2; i < sheetData.length; i++) {
+                    const row = sheetData[i];
+                    const regionId = row[0];
+                    const regionName = row[1];
+                    const dataValues = row.slice(2);
+
+                    sheetObj.regions[regionId] = {
+                        name: regionName,
+                        values: dataValues
+                    };
+                }
+
+                excelData[sheetName] = sheetObj;
             });
 
-            console.log(sheetData); // Check parsed data in console
-            // Now proceed to use sheetData within highlightFeature or other functions
+            //console.log("Data Parsed Successfully:", excelData);
         };
         reader.readAsArrayBuffer(selectedFile);
-        uploadFileButton.disabled = true; // Disable upload after processing
+        uploadFileButton.disabled = true; // Disable upload after processin
     }
 });
+
+
+
 
 
 
@@ -144,6 +164,7 @@ function highlightFeature(e) {
     const zoomLevel = zoomLevels[regionId] || 7; // Default zoom level if ID is not in the map
     // Update the region name in `top-left-div`
     const regionName = e.target.feature.properties['SSU'];
+
     regionNameElement.textContent = regionName || "Служба безпеки України";
 
     // Center and zoom the map on the selected feature with custom zoom level
@@ -152,6 +173,16 @@ function highlightFeature(e) {
         maxZoom: zoomLevel,
         animate: true
     });
+
+    for (const sheetName in excelData) {
+        const sheet = excelData[sheetName];
+        const regionData = sheet.regions[regionId];
+
+        if (regionData) {
+            console.log(`Data for region ${regionId} in ${sheetName}:`, regionData);
+            // Here you can add data to chart update functions
+        }
+    }
 
 }
 
