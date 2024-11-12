@@ -27,6 +27,12 @@ function initCharts() {
         },
         options: {
             responsive: true,
+            plugins: {
+                legend: {
+                    display: true,  // Set this to true to show the legend
+                    position: 'top'
+                },
+            },
             onClick: (e, elements) => {
                 if (elements.length) {
                     const categoryIndex = elements[0].index;
@@ -66,17 +72,22 @@ function updatePieChart(regionId) {
     // Populate pie chart data from all sheets for selected region
     for (const sheetName in excelData) {
         const sheet = excelData[sheetName];
-        const regionData = sheet.regions[regionId];
+        pieLabels.push(sheet.mainCategory);
 
+        // Sum the values for the specified regionId
+        const regionData = sheet.regions[regionId];
         if (regionData) {
-            //pieLabels.push(sheet.categories); // Category names
-            pieLabels = sheet.categories; // Directly use the categories from C1 as labels
-            const totalValue = regionData.values.reduce((a, b) => a + b, 0);
+            const totalValue = regionData.values.reduce((sum, value) => sum + (parseInt(value) || 0), 0);
             pieData.push(totalValue);
         }
     }
 
-    pieChart.data.labels = pieLabels;
+    // Calculate total for percentage calculation
+    const totalSum = pieData.reduce((acc, value) => acc + value, 0);
+    const percentageLabels = pieData.map(value => `${((value / totalSum) * 100).toFixed(2)}%`);
+
+    //pieChart.data.labels = pieLabels;
+    pieChart.data.labels = pieLabels.map((label, index) => `${label} (${percentageLabels[index]})`);
     pieChart.data.datasets[0].data = pieData;
     pieChart.update();
 }
@@ -128,11 +139,24 @@ uploadFileButton.addEventListener('click', () => {
             // Parse each sheet and store structured data
             workbook.SheetNames.forEach((sheetName) => {
                 const worksheet = workbook.Sheets[sheetName];
+
+
+
+                // Extract the main category from cell C1
+                const mainCategory = worksheet['C1'] ? worksheet['C1'].v : 'Unknown Category';
+
+                const sheetObj = {
+                    mainCategory, // Save main category directly
+                    regions: {}
+                };
+
+
+
                 const sheetData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
                 // Process rows and columns as per your file structure
-                const categoryNames = sheetData[1].slice(2); // Extract column names
-                const sheetObj = { categories: categoryNames, regions: {} };
+                //const categoryNames = sheetData[1].slice(2); // Extract column names
+                //const sheetObj = { categories: categoryNames, regions: {} };
 
                 for (let i = 2; i < sheetData.length; i++) {
                     const row = sheetData[i];
@@ -153,17 +177,6 @@ uploadFileButton.addEventListener('click', () => {
             // Display data for regionId 0 after upload
             const regionId = 0;
             updatePieChart(regionId); // Update pie chart for regionId 0 initially
-            // for (const sheetName in excelData) {
-            //     const sheet = excelData[sheetName];
-            //     const regionData = sheet.regions[regionId];
-            //
-            //     if (regionData) {
-            //         console.log(`Initial data for region ${regionId} in ${sheetName}:`, regionData);
-            //         // Here you can add data to chart update functions
-            //         initCharts()
-            //     }
-            // }
-            //updatePieChart(regionId);
 
         };
         reader.readAsArrayBuffer(selectedFile);

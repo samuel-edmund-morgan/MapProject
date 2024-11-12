@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="css/fontawesome-all.min.css">
     <link rel="stylesheet" href="css/ssu-map-styles.css">
     <script src="js/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+
 
     <title>Мапа розподілу</title>
 </head>
@@ -30,7 +32,7 @@
         <canvas id="pie-chart-canvas" width="600" height="600"></canvas>
     </div>
     <div id="bottom-right-div">
-        <canvas id="column-chart-canvas" width="600" height="600"></canvas>
+        <canvas id="column-chart-canvas" width="800" height="800"></canvas>
     </div>
     <div id="bottom-center-div">
         <button id="select-file">Select Excel File</button>
@@ -47,6 +49,7 @@
         <ul id="regions"></ul>
     </div>
 </div>
+
 <script src="js/qgis2web_expressions.js"></script>
 <script src="js/leaflet.js"></script>
 <script src="js/leaflet.rotatedMarker.js"></script>
@@ -59,6 +62,5 @@
 <script src="data/ukr_admbnda_adm1_sspe_20240416_0.js"></script>
 <script src="js/map-navigation-logic.js"></script>
 <script src="js/xlsx.full.min.js"></script>
-<script src="js/chart.js"></script>
 </body>
 </html>
