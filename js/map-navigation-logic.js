@@ -16,6 +16,7 @@ let pieChart, columnChart;
 // Initialize charts once when the page loads
 function initCharts() {
     const pieCtx = document.getElementById('pie-chart-canvas').getContext('2d');
+    //Create pieChart variable with Chart.js that will show percentage on pie sectors
     pieChart = new Chart(pieCtx, {
         type: 'pie',
         data: {
@@ -29,15 +30,32 @@ function initCharts() {
             responsive: true,
             plugins: {
                 legend: {
-                    display: true,  // Set this to true to show the legend
+                    display: true,
                     position: 'top'
                 },
-            },
-            onClick: (e, elements) => {
-                if (elements.length) {
-                    const categoryIndex = elements[0].index;
-                    updateColumnChart(categoryIndex);
+                datalabels: {
+                    formatter: (value, context) => {
+                        let sum = 0;
+                        const dataArr = context.chart.data.datasets[0].data;
+                        dataArr.forEach(data => {
+                            sum += data;
+                        });
+                        const percentage = (value * 100 / sum).toFixed(2) + "%";
+                        return percentage;
+                    },
+                    color: '#fff',
+                    font: {
+                        weight: 'bold',
+                        size: 8
+                    }
                 }
+            }
+        },
+        plugins: [ChartDataLabels],
+        onClick: (e, elements) => {
+            if (elements.length) {
+                const categoryIndex = elements[0].index; // Get clicked category index
+                updateColumnChart(categoryIndex); // Call column chart update
             }
         }
     });
@@ -64,6 +82,31 @@ function initCharts() {
     });
 }
 
+// Function to update column chart based on selected category
+function updateColumnChart(categoryIndex) {
+    let columnLabels = [];
+    let columnData = [];
+
+    for (const sheetName in excelData) {
+        const sheet = excelData[sheetName];
+        const regionData = sheet.regions[lastRegionId];
+
+        if (regionData) {
+            // Get subcategories and their values
+            console.log(sheet.categories);
+            columnLabels = sheet.categories; // Assume `categories` holds subcategories
+            console.log(regionData.values);
+            console.log(regionData.values[categoryIndex])
+            columnData = regionData.values[categoryIndex]; // Get corresponding subcategory data
+        }
+    }
+
+    columnChart.data.labels = columnLabels;
+    columnChart.data.datasets[0].data = columnData;
+    columnChart.update();
+}
+
+
 // Function to update the pie chart based on selected region
 function updatePieChart(regionId) {
     let pieLabels = [];
@@ -82,12 +125,9 @@ function updatePieChart(regionId) {
         }
     }
 
-    // Calculate total for percentage calculation
-    const totalSum = pieData.reduce((acc, value) => acc + value, 0);
-    const percentageLabels = pieData.map(value => `${((value / totalSum) * 100).toFixed(2)}%`);
 
-    //pieChart.data.labels = pieLabels;
-    pieChart.data.labels = pieLabels.map((label, index) => `${label} (${percentageLabels[index]})`);
+
+    pieChart.data.labels = pieLabels;
     pieChart.data.datasets[0].data = pieData;
     pieChart.update();
 }
@@ -127,6 +167,8 @@ selectFileButton.addEventListener('click', () => {
 
 // Call initCharts once to initialize the charts
 initCharts();
+
+
 
 
 uploadFileButton.addEventListener('click', () => {
