@@ -44,7 +44,7 @@ html, body {
     border-left: 1px solid #5597d3;
     border-radius: 15px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for appeal */
-    margin: 10px; /* Space around sidebar for rounded corners */
+    margin: 0; /* Space around sidebar for rounded corners */
 }
 
 /* List container styling */
@@ -133,8 +133,8 @@ html, body {
 }
 
 #bottom-left-div {
-    width: 33%;
-    height: 33%;
+    width: 40%;
+    height: 50%;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -145,6 +145,14 @@ html, body {
     margin: 10px;
     opacity: 0.8;
     z-index: 1001; /* Ensures it stays on top */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#pie-chart-canvas {
+    width: 100% !important;
+    height: 100% !important;
 }
 
 #top-center-div {
@@ -217,4 +225,23 @@ html, body {
     margin: 0; /* Reset default margin */
     padding: 10px 0; /* Add padding for spacing */
     text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; /* Text strokes */
+}
+
+#bottom-center-div {
+    width: 20%;
+    height: 10%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #bedfff;
+    border: 1px solid #5597d3;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    opacity: 0.8;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
