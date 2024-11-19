@@ -32,7 +32,6 @@ function updateColumnChart(sheetIndex) {
         }
     }
 
-
     columnChart.data.labels = columnLabels;
     columnChart.data.datasets[0].data = columnData;
     columnChart.update();
@@ -92,7 +91,7 @@ function initCharts() {
         data: {
             labels: [],
             datasets: [{
-                label: 'Values',
+                label: 'Кількість',
                 data: [],
                 backgroundColor: 'rgba(75, 192, 192, 0.6)',
             }]
@@ -206,61 +205,6 @@ uploadFileButton.addEventListener('click', () => {
         uploadFileButton.disabled = true; // Disable upload after processing
     }
 });
-// uploadFileButton.addEventListener('click', () => {
-//     if (selectedFile) {
-//         const reader = new FileReader();
-//         reader.onload = (e) => {
-//             const data = new Uint8Array(e.target.result);
-//             const workbook = XLSX.read(data, { type: 'array' });
-//
-//             // Parse each sheet and store structured data
-//             workbook.SheetNames.forEach((sheetName) => {
-//                 const worksheet = workbook.Sheets[sheetName];
-//
-//
-//
-//                 // Extract the main category from cell C1
-//                 const mainCategory = worksheet['C1'] ? worksheet['C1'].v : 'Unknown Category';
-//
-//                 const sheetObj = {
-//                     mainCategory, // Save main category directly
-//                     regions: {}
-//                 };
-//
-//
-//
-//                 const sheetData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-//
-//                 // Process rows and columns as per your file structure
-//                 const categoryNames = sheetData[1].slice(2); // Extract column names
-//                 console.log(categoryNames);
-//                 //const sheetObj = { categories: categoryNames, regions: {} };
-//
-//                 for (let i = 2; i < sheetData.length; i++) {
-//                     const row = sheetData[i];
-//                     const regionId = row[0];
-//                     const regionName = row[1];
-//                     const dataValues = row.slice(2);
-//
-//                     sheetObj.regions[regionId] = {
-//                         name: regionName,
-//                         values: dataValues
-//                     };
-//                 }
-//
-//                 excelData[sheetName] = sheetObj;
-//             });
-//
-//
-//             // Display data for regionId 0 after upload
-//             const regionId = 0;
-//             updatePieChart(regionId); // Update pie chart for regionId 0 initially
-//
-//         };
-//         reader.readAsArrayBuffer(selectedFile);
-//         uploadFileButton.disabled = true; // Disable upload after processin
-//     }
-// });
 
 const map = L.map('map', {
     zoomControl: false,
@@ -309,7 +253,7 @@ function resetHoverFeature(e) {
 const zoomLevels = {
     "0": 5, // Unique zoom level for ID 0
     ...Array.from({ length: 24 }, (_, i) => i + 1).reduce((acc, id) => {
-        acc[id] = 7;
+        acc[id] = 6;
         return acc;
     }, {})
 };
