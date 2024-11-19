@@ -30,5 +30,3 @@ function setBounds() {
 }
 
 map.setView([48.3794, 31.1656], 5);
-
-console.log(111);
