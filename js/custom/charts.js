@@ -1,5 +1,6 @@
 // charts.js
 
+
 let pieChart, columnChart;
 
 function updateColumnChart(sheetIndex) {
