@@ -2,7 +2,7 @@
 
 const map = L.map('map', {
     zoomControl: false,
-    maxZoom: 7,
+    maxZoom: 10,
     minZoom: 5,
     zoom: 5,
     preferCanvas: true,
@@ -11,7 +11,7 @@ const map = L.map('map', {
 });
 
 L.tileLayer('Tiles/{z}/{x}/{y}.png', {
-    maxZoom: 7,
+    maxZoom: 10,
     minZoom: 5,
     noWrap: true,
     updateWhenIdle: true,

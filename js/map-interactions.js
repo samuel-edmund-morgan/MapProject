@@ -8,9 +8,9 @@ let lastRegionId = null; // Track the last selected region
 function highlightOnHoverFeature(e) {
     if (e.target !== highlightLayer) {
         e.target.setStyle({
-            color: 'rgba(255,223,0,1.0)',
-            fillColor: '#008000',
-            fillOpacity: 0.85
+            color: 'rgb(212,143,121)',
+            fillColor: 'rgba(85,174,255,255)',
+            fillOpacity: 0.5
         });
     }
 }
@@ -18,8 +18,8 @@ function highlightOnHoverFeature(e) {
 function resetHoverFeature(e) {
     if (e.target !== highlightLayer) {
         e.target.setStyle({
-            color: 'rgba(255,223,0,1.0)',
-            fillColor: 'rgba(0,87,184,1.0)',
+            color: 'rgb(212,143,121)',
+            fillColor: 'rgba(85,174,255,255)',
             fillOpacity: 1
         });
     }
@@ -27,6 +27,7 @@ function resetHoverFeature(e) {
 
 const zoomLevels = {
     "0": 5,
+    "25": 10,
     ...Array.from({ length: 24 }, (_, i) => i + 1).reduce((acc, id) => {
         acc[id] = 6;
         return acc;
@@ -41,16 +42,16 @@ function highlightFeature(e) {
 
     if (highlightLayer) {
         highlightLayer.setStyle({
-            color: 'rgba(255,223,0,1.0)',
-            fillColor: 'rgba(0,87,184,1.0)',
+            color: 'rgb(212,143,121)',
+            fillColor: 'rgba(85,174,255,255)',
             fillOpacity: 1
         });
     }
 
     highlightLayer = e.target;
     highlightLayer.setStyle({
-        color: 'rgba(255,223,0,1.0)',
-        fillColor: '#008000',
+        color: 'rgb(212,143,121)',
+        fillColor: 'rgba(14,107,191,1.0)',
         fillOpacity: 1
     });
 
@@ -91,14 +92,14 @@ function style_ukr_admbnda_adm1_sspe_20240416_0_0() {
     return {
         pane: 'pane_ukr_admbnda_adm1_sspe_20240416_0',
         opacity: 1,
-        color: 'rgba(255,223,0,1.0)',
+        color: 'rgba(212,143,121,1.0)',
         dashArray: '',
         lineCap: 'butt',
         lineJoin: 'miter',
-        weight: 5.0,
+        weight: 2.0,
         fill: true,
         fillOpacity: 1,
-        fillColor: 'rgba(0,87,184,1.0)',
+        fillColor: 'rgba(14,107,191,1.0)',
         interactive: true,
     }
 }
