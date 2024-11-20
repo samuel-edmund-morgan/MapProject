@@ -9,7 +9,7 @@ function highlightOnHoverFeature(e) {
     if (e.target !== highlightLayer) {
         e.target.setStyle({
             color: 'rgb(212,143,121)',
-            fillColor: 'rgba(85,174,255,255)',
+            fillColor: 'rgba(0,87,184,1.0)',
             fillOpacity: 0.5
         });
     }
@@ -19,7 +19,7 @@ function resetHoverFeature(e) {
     if (e.target !== highlightLayer) {
         e.target.setStyle({
             color: 'rgb(212,143,121)',
-            fillColor: 'rgba(85,174,255,255)',
+            fillColor: 'rgba(14,107,191,1.0)',
             fillOpacity: 1
         });
     }
@@ -43,7 +43,7 @@ function highlightFeature(e) {
     if (highlightLayer) {
         highlightLayer.setStyle({
             color: 'rgb(212,143,121)',
-            fillColor: 'rgba(85,174,255,255)',
+            fillColor: 'rgba(14,107,191,1.0)',
             fillOpacity: 1
         });
     }
@@ -51,7 +51,7 @@ function highlightFeature(e) {
     highlightLayer = e.target;
     highlightLayer.setStyle({
         color: 'rgb(212,143,121)',
-        fillColor: 'rgba(14,107,191,1.0)',
+        fillColor: 'rgba(0,87,184,1.0)',
         fillOpacity: 1
     });
 
