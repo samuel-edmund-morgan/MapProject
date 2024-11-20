@@ -64,7 +64,8 @@ function highlightFeature(e) {
         animate: true
     });
 
-    updatePieChart(regionId);
+    //updatePieChart(regionId);
+    populatePieTable(regionId);
 }
 
 const layer_ukr_admbnda_adm1_sspe_20240416_0 = new L.geoJson(json_ukr_admbnda_adm1_sspe_20240416_0, {

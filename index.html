@@ -26,10 +26,26 @@
     </div>
     <!--<div id="top-center-div"></div>-->
     <div id="bottom-left-div">
-        <canvas id="pie-chart-canvas" width="600" height="600"></canvas>
+        <table id="pie-table">
+            <thead>
+            <tr>
+                <th>Category</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     </div>
     <div id="bottom-right-div">
-        <canvas id="column-chart-canvas" width="800" height="800"></canvas>
+        <table id="column-table">
+            <thead>
+            <tr>
+                <th>Category</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     </div>
     <div id="bottom-center-div">
         <button id="select-file">Обрати файл з даними</button>
@@ -46,8 +62,8 @@
         <ul id="regions"></ul>
     </div>
 </div>
-<script src="js/lib/chart.js"></script>
-<script src="js/lib/chartjs-plugin-datalabels.js"></script>
+<!--<script src="js/lib/chart.js"></script>
+<script src="js/lib/chartjs-plugin-datalabels.js"></script>-->
 <script src="js/lib/qgis2web_expressions.js"></script>
 <script src="js/lib/leaflet.js"></script>
 <script src="js/lib/leaflet.rotatedMarker.js"></script>
@@ -62,7 +78,9 @@
 <script src="js/map-setup.js"></script>
 <script src="js/map-interactions.js"></script>
 <script src="js/region-list.js"></script>
-<script src="js/charts.js"></script>
+<!--<script src="js/charts.js"></script>-->
 <script src="js/file-upload.js"></script>
+<script src="js/tables.js"></script>
+
 </body>
 </html>

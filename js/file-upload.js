@@ -56,7 +56,9 @@ uploadFileButton.addEventListener('click', () => {
             });
 
             const regionId = 0;
-            updatePieChart(regionId); // Update pie chart for regionId 0 initially
+            populateColumnTable(0);
+            populatePieTable(regionId);
+            //updatePieChart(regionId); // Update pie chart for regionId 0 initially
         };
         reader.readAsArrayBuffer(selectedFile);
         uploadFileButton.disabled = true; // Disable upload after processing
