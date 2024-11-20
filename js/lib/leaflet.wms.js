@@ -9,10 +9,10 @@
     // Module systems magic dance, Leaflet edition
     if (typeof define === 'function' && define.amd) {
         // AMD
-        define(['leaflet'], factory);
+        define(['js/lib/leaflet'], factory);
     } else if (typeof module !== 'undefined') {
         // Node/CommonJS
-        module.exports = factory(require('leaflet'));
+        module.exports = factory(require('js/lib/leaflet'));
     } else {
         // Browser globals
         if (typeof this.L === 'undefined')
