@@ -63,16 +63,19 @@ uploadFileButton.addEventListener('click', () => {
             document.getElementById('informational-div').style.display = 'block';
             document.getElementById('communication-div').style.display = 'block';
             document.getElementById('energy-div').style.display = 'block';
+            document.getElementById('general-ammunition-div').style.display = 'block';
 
             const regionId = 0;
 
-            // Populate the general tables with SSU data
+            // Populate the general tables with static data
             populateColumnTable(studySheet, regionId, generalStudyTable);
             populateColumnTable(informationalSheet, regionId, generalInformationalTable);
             populateColumnTable(communicationsSheet, regionId, generalCommunicationTable);
             populateColumnTable(energySheet, regionId, generalEnergyTable);
+            populateColumnTable(ammunitionSheet, regionId, generalAmmunitionTable);
 
 
+            // Populate the specific tables with dynamic data
             populateColumnTable(studySheet, regionId, studyTable);
             populateColumnTable(informationalSheet, regionId, informationalTable);
             populateColumnTable(communicationsSheet, regionId, communicationTable);
@@ -109,6 +112,7 @@ uploadFileButton.addEventListener('click', () => {
                 energyDiv.style.top = `${communicationDivRect.bottom + 1}px`; // 10px margin
                 energyDiv.style.right = `${communicationDiv.right}px`;
             }
+
             // Initial positioning
             positionStudyDiv()
             positionInformationalDiv();
@@ -126,7 +130,6 @@ uploadFileButton.addEventListener('click', () => {
         };
         reader.readAsArrayBuffer(selectedFile);
         uploadFileButton.disabled = true; // Disable upload after processing
-        // document.getElementById('upload-div').style.display = 'none';
         document.getElementById('overlay').style.display = 'none';
     }
 });

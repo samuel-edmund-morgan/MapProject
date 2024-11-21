@@ -49,7 +49,7 @@ html, body {
 
 #left-sidebar {
     width: 20%;
-    height: 100%;
+    height: 75%;
     position: relative;
     left: 0;
     top: 0;
@@ -71,17 +71,49 @@ html, body {
     text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; /* Text strokes */
 }
 
-
-#general-study-div,
-#general-informational-div,
-#general-communication-div,
-#general-energy-div {
-    margin-bottom: 1px;
+#general-ammunition-div {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 33%;
+    height: 20%;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 10px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+#general-ammunition-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#general-ammunition-table th,
+#general-ammunition-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#general-ammunition-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+
+#general-study-div,
+#general-informational-div,
+#general-communication-div,
+#general-energy-div {
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 6px;
 }
 
 #general-study-table,
@@ -101,7 +133,7 @@ html, body {
 #general-communication-table td,
 #general-energy-table td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 4px;
     text-align: left;
 }
 
