@@ -1,30 +1,28 @@
 // tables.js
 
-function populatePieTable(regionId) {
-    const tableBody = document.querySelector('#pie-table tbody');
+// function populatePieTable(regionId) {
+//     const tableBody = document.querySelector('#pie-table tbody');
+//     tableBody.innerHTML = '';
+//
+//     for (const sheetName in excelData) {
+//         const sheet = excelData[sheetName];
+//         const regionData = sheet.regions[regionId];
+//         if (regionData) {
+//             const totalValue = regionData.values.reduce((sum, valueObj) => sum + (parseInt(valueObj.value) || 0), 0);
+//             const row = document.createElement('tr');
+//             row.innerHTML = `<td>${sheet.mainCategory}</td><td>${totalValue}</td>`;
+//             tableBody.appendChild(row);
+//         }
+//     }
+// }
+
+
+function populateColumnTable(sheetIndex, regionId, tableBody) {
     tableBody.innerHTML = '';
-
-    for (const sheetName in excelData) {
-        const sheet = excelData[sheetName];
-        const regionData = sheet.regions[regionId];
-        if (regionData) {
-            const totalValue = regionData.values.reduce((sum, valueObj) => sum + (parseInt(valueObj.value) || 0), 0);
-            const row = document.createElement('tr');
-            row.innerHTML = `<td>${sheet.mainCategory}</td><td>${totalValue}</td>`;
-            tableBody.appendChild(row);
-        }
-    }
-}
-
-function populateColumnTable(sheetIndex) {
-    const tableBody = document.querySelector('#column-table tbody');
-    tableBody.innerHTML = '';
-
     const sheetNames = Object.keys(excelData);
     if (sheetIndex >= 0 && sheetIndex < sheetNames.length) {
         const sheetName = sheetNames[sheetIndex];
         const sheet = excelData[sheetName];
-        const regionId = lastRegionId !== null ? lastRegionId : 0;
         const regionData = sheet.regions[regionId];
 
         if (regionData) {
@@ -36,7 +34,3 @@ function populateColumnTable(sheetIndex) {
         }
     }
 }
-
-// Call these functions with appropriate parameters to populate the tables
-//populatePieTable(0);
-//populateColumnTable(0);

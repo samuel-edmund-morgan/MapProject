@@ -43,7 +43,7 @@ uploadFileButton.addEventListener('click', () => {
                     const regionName = row[1];
                     const dataValues = row.slice(2).map((value, index) => ({
                         category: categoryNames[index],
-                        value: value
+                        value: Math.round(value)
                     }));
 
                     sheetObj.regions[regionId] = {
@@ -56,9 +56,9 @@ uploadFileButton.addEventListener('click', () => {
             });
 
             const regionId = 0;
-            populateColumnTable(4);
-            populatePieTable(regionId);
-            //updatePieChart(regionId); // Update pie chart for regionId 0 initially
+            populateColumnTable(energySheet, regionId, energyTable);
+            populateColumnTable(communicationsSheet, regionId, communicationsTable);
+
         };
         reader.readAsArrayBuffer(selectedFile);
         uploadFileButton.disabled = true; // Disable upload after processing

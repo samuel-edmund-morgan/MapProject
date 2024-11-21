@@ -118,8 +118,8 @@ html, body {
 
 
 #bottom-right-div {
-    width: 33%;
-    height: 33%;
+    width: auto;
+    height: auto;
     position: absolute;
     bottom: 0;
     right: 0;
@@ -130,6 +130,7 @@ html, body {
     margin: 10px;
     opacity: 0.8;
     z-index: 1001; /* Ensures it stays on top */
+    padding: 10px; /* Add padding for spacing */
 }
 
 #bottom-left-div {
