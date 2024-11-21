@@ -66,16 +66,16 @@ function highlightFeature(e) {
     });
 
     populateColumnTable(studySheet, regionId, studyTable);
-    populateColumnTable(energySheet, regionId, energyTable);
     populateColumnTable(informationalSheet, regionId, informationalTable);
     populateColumnTable(communicationsSheet, regionId, communicationTable);
+    populateColumnTable(energySheet, regionId, energyTable);
 
 }
 
 const layer_ukr_admbnda_adm1_sspe_20240416_0 = new L.geoJson(json_ukr_admbnda_adm1_sspe_20240416_0, {
     attribution: '',
     interactive: true,
-    keepBuffer: 4,
+    keepBuffer: 8,
     dataVar: 'json_ukr_admbnda_adm1_sspe_20240416_0',
     layerName: 'layer_ukr_admbnda_adm1_sspe_20240416_0',
     pane: 'pane_ukr_admbnda_adm1_sspe_20240416_0',

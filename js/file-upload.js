@@ -56,12 +56,23 @@ uploadFileButton.addEventListener('click', () => {
             });
 
             // Show the communications-div once excelData is populated
+            // document.getElementById('left-sidebar').style.display = 'block';
+            // document.getElementById('sidebar').style.display = 'block';
+
             document.getElementById('study-div').style.display = 'block';
             document.getElementById('informational-div').style.display = 'block';
             document.getElementById('communication-div').style.display = 'block';
             document.getElementById('energy-div').style.display = 'block';
 
             const regionId = 0;
+
+            // Populate the general tables with SSU data
+            populateColumnTable(studySheet, regionId, generalStudyTable);
+            populateColumnTable(informationalSheet, regionId, generalInformationalTable);
+            populateColumnTable(communicationsSheet, regionId, generalCommunicationTable);
+            populateColumnTable(energySheet, regionId, generalEnergyTable);
+
+
             populateColumnTable(studySheet, regionId, studyTable);
             populateColumnTable(informationalSheet, regionId, informationalTable);
             populateColumnTable(communicationsSheet, regionId, communicationTable);
@@ -74,38 +85,30 @@ uploadFileButton.addEventListener('click', () => {
             const communicationDiv = document.getElementById('communication-div');
             const energyDiv = document.getElementById('energy-div');
 
-
-
             function positionStudyDiv() {
                 const logoContainerRect = logoContainer.getBoundingClientRect();
                 studyDiv.style.position = 'absolute';
-                studyDiv.style.top = `${logoContainerRect.bottom + 10}px`; // 10px margin
+                studyDiv.style.top = `${logoContainerRect.bottom + 1}px`; // 10px margin
                 studyDiv.style.right = `${logoContainer.right}px`;
             }
-
             function positionInformationalDiv() {
                 const studyDivRect = studyDiv.getBoundingClientRect();
                 informationalDiv.style.position = 'absolute';
-                informationalDiv.style.top = `${studyDivRect.bottom + 10}px`; // 10px margin
+                informationalDiv.style.top = `${studyDivRect.bottom + 1}px`; // 10px margin
                 informationalDiv.style.right = `${studyDiv.right}px`;
             }
-
             function positionCommunicationDiv() {
                 const informationalDivRect = informationalDiv.getBoundingClientRect();
                 communicationDiv.style.position = 'absolute';
-                communicationDiv.style.top = `${informationalDivRect.bottom + 10}px`; // 10px margin
+                communicationDiv.style.top = `${informationalDivRect.bottom + 1}px`; // 10px margin
                 communicationDiv.style.right = `${informationalDiv.right}px`;
             }
-
             function positionEnergyDiv() {
                 const communicationDivRect = communicationDiv.getBoundingClientRect();
                 energyDiv.style.position = 'absolute';
-                energyDiv.style.top = `${communicationDivRect.bottom + 10}px`; // 10px margin
+                energyDiv.style.top = `${communicationDivRect.bottom + 1}px`; // 10px margin
                 energyDiv.style.right = `${communicationDiv.right}px`;
             }
-
-
-
             // Initial positioning
             positionStudyDiv()
             positionInformationalDiv();
@@ -113,10 +116,17 @@ uploadFileButton.addEventListener('click', () => {
             positionEnergyDiv();
 
             // Reposition on window resize
-            //window.addEventListener('resize', positionStudyDivs);
+            window.addEventListener('resize', () => {
+                positionStudyDiv();
+                positionInformationalDiv();
+                positionCommunicationDiv();
+                positionEnergyDiv();
+            });
 
         };
         reader.readAsArrayBuffer(selectedFile);
         uploadFileButton.disabled = true; // Disable upload after processing
+        // document.getElementById('upload-div').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
     }
 });
