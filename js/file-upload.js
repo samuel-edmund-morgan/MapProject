@@ -55,19 +55,19 @@ uploadFileButton.addEventListener('click', () => {
                 excelData[sheetName] = sheetObj;
             });
 
-            // Show the communications-div once excelData is populated
-            // document.getElementById('left-sidebar').style.display = 'block';
-            // document.getElementById('sidebar').style.display = 'block';
-
+            document.getElementById('software-div').style.display = 'block';
             document.getElementById('study-div').style.display = 'block';
             document.getElementById('informational-div').style.display = 'block';
             document.getElementById('communication-div').style.display = 'block';
             document.getElementById('energy-div').style.display = 'block';
+
             document.getElementById('general-ammunition-div').style.display = 'block';
 
             const regionId = 0;
 
+
             // Populate the general tables with static data
+            populateSoftwareTable(regionId, generalSoftwareTable, true);
             populateColumnTable(studySheet, regionId, generalStudyTable);
             populateColumnTable(informationalSheet, regionId, generalInformationalTable);
             populateColumnTable(communicationsSheet, regionId, generalCommunicationTable);
@@ -76,6 +76,9 @@ uploadFileButton.addEventListener('click', () => {
 
 
             // Populate the specific tables with dynamic data
+            //populateColumnTable(softwareSheet, regionId, softwareTable);
+
+            populateSoftwareTable(regionId, softwareTable, false);
             populateColumnTable(studySheet, regionId, studyTable);
             populateColumnTable(informationalSheet, regionId, informationalTable);
             populateColumnTable(communicationsSheet, regionId, communicationTable);
@@ -119,6 +122,13 @@ uploadFileButton.addEventListener('click', () => {
             positionCommunicationDiv();
             positionEnergyDiv();
 
+
+            // Hide or show divs based on regionId
+            const divsToToggle = ['software-div', 'study-div', 'informational-div', 'communication-div', 'energy-div'];
+            divsToToggle.forEach(divId => {
+                document.getElementById(divId).style.display = regionId === 0 ? 'none' : 'block';
+            });
+
             // Reposition on window resize
             window.addEventListener('resize', () => {
                 positionStudyDiv();
@@ -126,6 +136,8 @@ uploadFileButton.addEventListener('click', () => {
                 positionCommunicationDiv();
                 positionEnergyDiv();
             });
+
+
 
         };
         reader.readAsArrayBuffer(selectedFile);

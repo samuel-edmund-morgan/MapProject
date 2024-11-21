@@ -73,7 +73,7 @@ html, body {
 
 #general-ammunition-div {
     position: absolute;
-    bottom: 10px;
+    bottom: 5px;
     left: 10px;
     width: 33%;
     height: 20%;
@@ -104,11 +104,49 @@ html, body {
 }
 
 
+#software-div {
+    display: none;
+    position: absolute;
+    top: 15%;
+    left: 20px; /* 20% width of left-sidebar + 20px margin */
+    width: 33%;
+    height: auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+#software-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#software-table th,
+#software-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#software-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+
+
+
+
 #general-study-div,
 #general-informational-div,
 #general-communication-div,
-#general-energy-div {
-    margin-bottom: 10px;
+#general-energy-div,
+#general-software-div {
+    margin-bottom: 5px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -119,7 +157,8 @@ html, body {
 #general-study-table,
 #general-informational-table,
 #general-communication-table,
-#general-energy-table {
+#general-energy-table,
+#general-software-table{
     width: 100%;
     border-collapse: collapse;
 }
@@ -131,16 +170,18 @@ html, body {
 #general-study-table td,
 #general-informational-table td,
 #general-communication-table td,
-#general-energy-table td {
+#general-energy-table td,
+#general-software-table td {
     border: 1px solid #ddd;
-    padding: 4px;
+    padding: 2px;
     text-align: left;
 }
 
 #general-study-table th,
 #general-informational-table th,
 #general-communication-table th,
-#general-energy-table th {
+#general-energy-table th,
+#general-software-table th {
     background-color: #f2f2f2;
     font-weight: bold;
 }
@@ -158,13 +199,11 @@ html, body {
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 10px;
+    margin: 8px;
     opacity: 0.8;
     z-index: 1001; /* Ensures it stays on top */
-    padding: 8px; /* Add padding for spacing */
+    padding: 6px; /* Add padding for spacing */
 }
-
-
 
 
 #study-table,

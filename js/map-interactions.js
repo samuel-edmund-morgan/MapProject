@@ -27,7 +27,7 @@ function resetHoverFeature(e) {
 
 const zoomLevels = {
     "0": 5,
-    "25": 10,
+    "25": 9,
     ...Array.from({ length: 24 }, (_, i) => i + 1).reduce((acc, id) => {
         acc[id] = 6;
         return acc;
@@ -36,6 +36,7 @@ const zoomLevels = {
 
 function highlightFeature(e) {
     const regionId = e.target.feature.properties['id'];
+
     if (regionId === lastRegionId) return;
 
     lastRegionId = regionId;
@@ -65,10 +66,18 @@ function highlightFeature(e) {
         animate: true
     });
 
+    populateSoftwareTable(regionId, softwareTable, false);
     populateColumnTable(studySheet, regionId, studyTable);
     populateColumnTable(informationalSheet, regionId, informationalTable);
     populateColumnTable(communicationsSheet, regionId, communicationTable);
     populateColumnTable(energySheet, regionId, energyTable);
+
+    // Hide or show divs based on regionId
+    const divsToToggle = ['software-div', 'study-div', 'informational-div', 'communication-div', 'energy-div'];
+    divsToToggle.forEach(divId => {
+        document.getElementById(divId).style.display = regionId === '0' ? 'none' : 'block';
+    });
+
 
 }
 
