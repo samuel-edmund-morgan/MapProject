@@ -56,7 +56,7 @@ uploadFileButton.addEventListener('click', () => {
             });
 
             const regionId = 0;
-            populateColumnTable(0);
+            populateColumnTable(4);
             populatePieTable(regionId);
             //updatePieChart(regionId); // Update pie chart for regionId 0 initially
         };
