@@ -56,31 +56,64 @@ uploadFileButton.addEventListener('click', () => {
             });
 
             // Show the communications-div once excelData is populated
-            document.getElementById('bottom-right-div').style.display = 'block';
             document.getElementById('study-div').style.display = 'block';
-            document.getElementById('communications-div').style.display = 'block';
+            document.getElementById('informational-div').style.display = 'block';
+            document.getElementById('communication-div').style.display = 'block';
+            document.getElementById('energy-div').style.display = 'block';
 
             const regionId = 0;
             populateColumnTable(studySheet, regionId, studyTable);
+            populateColumnTable(informationalSheet, regionId, informationalTable);
+            populateColumnTable(communicationsSheet, regionId, communicationTable);
             populateColumnTable(energySheet, regionId, energyTable);
-            populateColumnTable(communicationsSheet, regionId, communicationsTable);
 
             // Position the communications-div relative to study-div
+            const logoContainer = document.getElementById('logo-container');
             const studyDiv = document.getElementById('study-div');
-            const communicationsDiv = document.getElementById('communications-div');
+            const informationalDiv = document.getElementById('informational-div');
+            const communicationDiv = document.getElementById('communication-div');
+            const energyDiv = document.getElementById('energy-div');
 
-            function positionCommunicationsDiv() {
-                const studyDivRect = studyDiv.getBoundingClientRect();
-                communicationsDiv.style.position = 'absolute';
-                communicationsDiv.style.top = `${studyDivRect.bottom + 10}px`; // 10px margin
-                communicationsDiv.style.left = `${studyDivRect.left}px`;
+
+
+            function positionStudyDiv() {
+                const logoContainerRect = logoContainer.getBoundingClientRect();
+                studyDiv.style.position = 'absolute';
+                studyDiv.style.top = `${logoContainerRect.bottom + 10}px`; // 10px margin
+                studyDiv.style.right = `${logoContainer.right}px`;
             }
 
+            function positionInformationalDiv() {
+                const studyDivRect = studyDiv.getBoundingClientRect();
+                informationalDiv.style.position = 'absolute';
+                informationalDiv.style.top = `${studyDivRect.bottom + 10}px`; // 10px margin
+                informationalDiv.style.right = `${studyDiv.right}px`;
+            }
+
+            function positionCommunicationDiv() {
+                const informationalDivRect = informationalDiv.getBoundingClientRect();
+                communicationDiv.style.position = 'absolute';
+                communicationDiv.style.top = `${informationalDivRect.bottom + 10}px`; // 10px margin
+                communicationDiv.style.right = `${informationalDiv.right}px`;
+            }
+
+            function positionEnergyDiv() {
+                const communicationDivRect = communicationDiv.getBoundingClientRect();
+                energyDiv.style.position = 'absolute';
+                energyDiv.style.top = `${communicationDivRect.bottom + 10}px`; // 10px margin
+                energyDiv.style.right = `${communicationDiv.right}px`;
+            }
+
+
+
             // Initial positioning
-            positionCommunicationsDiv();
+            positionStudyDiv()
+            positionInformationalDiv();
+            positionCommunicationDiv();
+            positionEnergyDiv();
 
             // Reposition on window resize
-            window.addEventListener('resize', positionCommunicationsDiv);
+            //window.addEventListener('resize', positionStudyDivs);
 
         };
         reader.readAsArrayBuffer(selectedFile);

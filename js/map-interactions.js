@@ -67,7 +67,8 @@ function highlightFeature(e) {
 
     populateColumnTable(studySheet, regionId, studyTable);
     populateColumnTable(energySheet, regionId, energyTable);
-    populateColumnTable(communicationsSheet, regionId, communicationsTable);
+    populateColumnTable(informationalSheet, regionId, informationalTable);
+    populateColumnTable(communicationsSheet, regionId, communicationTable);
 
 }
 

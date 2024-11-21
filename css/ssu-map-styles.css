@@ -39,7 +39,7 @@ html, body {
 }
 
 /* Container for logo and text */
-.logo-container {
+#logo-container {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -58,7 +58,6 @@ html, body {
     width: 20%;
     height: auto;
     position: absolute;
-    top: calc(20px + 80px + 20px); /* Adjust based on logo-container height and margin */
     right: 0;
     background-color: #bedfff;
     border: 1px solid #5597d3;
@@ -70,7 +69,39 @@ html, body {
     padding: 10px; /* Add padding for spacing */
 }
 
-#communications-div {
+#informational-div {
+    display: none;
+    width: 20%;
+    height: auto;
+    position: absolute;
+    right: 0;
+    background-color: #bedfff;
+    border: 1px solid #5597d3;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    opacity: 0.8;
+    z-index: 1001;
+    padding: 10px;
+}
+
+#communication-div {
+    display: none;
+    width: 20%;
+    height: auto;
+    position: absolute;
+    right: 0;
+    background-color: #bedfff;
+    border: 1px solid #5597d3;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    opacity: 0.8;
+    z-index: 1001;
+    padding: 10px;
+}
+
+#energy-div {
     display: none;
     width: 20%;
     height: auto;
@@ -140,7 +171,7 @@ html, body {
 
 
 
-.logo-container img {
+#logo-container img {
     width: 80px;
     height: auto;
     margin-right: 20px;
@@ -153,22 +184,22 @@ html, body {
 }
 
 
-#bottom-right-div {
-    display: none;
-    width: auto;
-    height: auto;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background-color: #bedfff;
-    border: 1px solid #5597d3;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-    opacity: 0.8;
-    z-index: 1001; /* Ensures it stays on top */
-    padding: 10px; /* Add padding for spacing */
-}
+/*#bottom-right-div {*/
+/*    display: none;*/
+/*    width: auto;*/
+/*    height: auto;*/
+/*    position: absolute;*/
+/*    bottom: 0;*/
+/*    right: 0;*/
+/*    background-color: #bedfff;*/
+/*    border: 1px solid #5597d3;*/
+/*    border-radius: 15px;*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+/*    margin: 10px;*/
+/*    opacity: 0.8;*/
+/*    z-index: 1001; !* Ensures it stays on top *!*/
+/*    padding: 10px; !* Add padding for spacing *!*/
+/*}*/
 
 #bottom-left-div {
     width: 40%;
