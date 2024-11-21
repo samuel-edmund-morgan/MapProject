@@ -26,14 +26,70 @@ html, body {
 
 /* Main map container to occupy 75% of the screen */
 #map-container {
-    width: 75%;
+    width: 80%;
     height: 100vh;
     position: relative;
 }
 
+/* Styling for the map */
+#map {
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Lower z-index for the map */
+}
+
+/* Container for logo and text */
+.logo-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    padding: 10px; /* Add padding for spacing */
+    background-color: rgba(251, 244, 236, 0.7); /* Set background color */
+    border-radius: 8px; /* Round the corners */
+    height: auto;
+    width: auto;
+}
+
+#study-div {
+    display: none;
+    width: 20%;
+    height: auto;
+    position: absolute;
+    top: calc(20px + 80px + 20px); /* Adjust based on logo-container height and margin */
+    right: 0;
+    background-color: #bedfff;
+    border: 1px solid #5597d3;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    opacity: 0.8;
+    z-index: 1001; /* Ensures it stays on top */
+    padding: 10px; /* Add padding for spacing */
+}
+
+#communications-div {
+    display: none;
+    width: 20%;
+    height: auto;
+    position: absolute;
+    right: 0;
+    background-color: #bedfff;
+    border: 1px solid #5597d3;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    opacity: 0.8;
+    z-index: 1001;
+    padding: 10px;
+}
+
+
 /* Sidebar styling */
 #sidebar {
-    width: 25%;
+    width: 20%;
     height: 95vh; /* Adjust to give room for rounded corners */
     padding: 20px;
     background-color: #bedfff;
@@ -82,27 +138,7 @@ html, body {
     background-color: #a2d8ff; /* Slightly lighter shade on hover */
 }
 
-/* Styling for the map */
-#map {
-    width: 100%;
-    height: 100%;
-    z-index: 0; /* Lower z-index for the map */
-}
 
-/* Container for logo and text */
-.logo-container {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-    margin-right: 20px;
-    padding: 10px; /* Add padding for spacing */
-    background-color: rgba(251, 244, 236, 0.7); /* Set background color */
-    border-radius: 8px; /* Round the corners */
-}
 
 .logo-container img {
     width: 80px;
@@ -118,6 +154,7 @@ html, body {
 
 
 #bottom-right-div {
+    display: none;
     width: auto;
     height: auto;
     position: absolute;
@@ -150,28 +187,6 @@ html, body {
     align-items: center;
     justify-content: center;
 }
-
-#pie-chart-canvas {
-    width: 100% !important;
-    height: 100% !important;
-}
-
-#top-center-div {
-    width: 33%;
-    height: 33%;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%); /* Center the div horizontally */
-    background-color: #bedfff;
-    border: 1px solid #5597d3;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-    opacity: 0.8;
-    z-index: 1001; /* Ensures it stays on top */
-}
-
 
 #top-left-div {
     position: absolute;

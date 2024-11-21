@@ -65,6 +65,7 @@ function highlightFeature(e) {
         animate: true
     });
 
+    populateColumnTable(studySheet, regionId, studyTable);
     populateColumnTable(energySheet, regionId, energyTable);
     populateColumnTable(communicationsSheet, regionId, communicationsTable);
 

@@ -55,9 +55,32 @@ uploadFileButton.addEventListener('click', () => {
                 excelData[sheetName] = sheetObj;
             });
 
+            // Show the communications-div once excelData is populated
+            document.getElementById('bottom-right-div').style.display = 'block';
+            document.getElementById('study-div').style.display = 'block';
+            document.getElementById('communications-div').style.display = 'block';
+
             const regionId = 0;
+            populateColumnTable(studySheet, regionId, studyTable);
             populateColumnTable(energySheet, regionId, energyTable);
             populateColumnTable(communicationsSheet, regionId, communicationsTable);
+
+            // Position the communications-div relative to study-div
+            const studyDiv = document.getElementById('study-div');
+            const communicationsDiv = document.getElementById('communications-div');
+
+            function positionCommunicationsDiv() {
+                const studyDivRect = studyDiv.getBoundingClientRect();
+                communicationsDiv.style.position = 'absolute';
+                communicationsDiv.style.top = `${studyDivRect.bottom + 10}px`; // 10px margin
+                communicationsDiv.style.left = `${studyDivRect.left}px`;
+            }
+
+            // Initial positioning
+            positionCommunicationsDiv();
+
+            // Reposition on window resize
+            window.addEventListener('resize', positionCommunicationsDiv);
 
         };
         reader.readAsArrayBuffer(selectedFile);

@@ -8,5 +8,6 @@ const transportSheet = 5;
 const ammunationSheet = 6;
 
 
+const studyTable = document.querySelector('#study-table tbody');
 const energyTable = document.querySelector('#energy-table tbody');
 const communicationsTable = document.querySelector('#communications-table tbody');
