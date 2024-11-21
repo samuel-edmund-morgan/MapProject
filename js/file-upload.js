@@ -137,8 +137,6 @@ uploadFileButton.addEventListener('click', () => {
                 positionEnergyDiv();
             });
 
-
-
         };
         reader.readAsArrayBuffer(selectedFile);
         uploadFileButton.disabled = true; // Disable upload after processing

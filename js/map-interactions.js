@@ -5,6 +5,8 @@ let highlightLayer;
 const regionNameElement = document.getElementById('region-name');
 let lastRegionId = null; // Track the last selected region
 
+
+
 function highlightOnHoverFeature(e) {
     if (e.target !== highlightLayer) {
         e.target.setStyle({
@@ -14,7 +16,6 @@ function highlightOnHoverFeature(e) {
         });
     }
 }
-
 function resetHoverFeature(e) {
     if (e.target !== highlightLayer) {
         e.target.setStyle({
@@ -24,7 +25,6 @@ function resetHoverFeature(e) {
         });
     }
 }
-
 const zoomLevels = {
     "0": 5,
     "25": 9,
@@ -33,7 +33,6 @@ const zoomLevels = {
         return acc;
     }, {})
 };
-
 function highlightFeature(e) {
     const regionId = e.target.feature.properties['id'];
 
@@ -78,7 +77,6 @@ function highlightFeature(e) {
         document.getElementById(divId).style.display = regionId === '0' ? 'none' : 'block';
     });
 
-
 }
 
 const layer_ukr_admbnda_adm1_sspe_20240416_0 = new L.geoJson(json_ukr_admbnda_adm1_sspe_20240416_0, {
@@ -100,7 +98,12 @@ function pop_ukr_admbnda_adm1_sspe_20240416_0(feature, layer) {
     });
 }
 
+
+
+
 function style_ukr_admbnda_adm1_sspe_20240416_0_0() {
+    //console.log('style_ukr_admbnda_adm1_sspe_20240416_0_0');
+
     return {
         pane: 'pane_ukr_admbnda_adm1_sspe_20240416_0',
         opacity: 1,
