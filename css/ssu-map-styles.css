@@ -112,6 +112,8 @@ html, body {
 
 
 
+
+
 #general-ammunition-div {
     position: absolute;
     bottom: 0px;
@@ -122,7 +124,7 @@ html, body {
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px;
+    padding: 2px;
     overflow-y: auto;
     z-index: 1000;
 }
@@ -165,8 +167,6 @@ html, body {
 
 }
 
-
-
 #general-study-div,
 #general-informational-div,
 #general-communication-div,
@@ -178,9 +178,26 @@ html, body {
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
     padding: 6px;
-
 }
+
+#left-sidebar th {
+    background-color: rgba(204,210,217,255);
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#left-sidebar tbody tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+#left-sidebar tbody tr:nth-child(even) {
+    background-color: rgba(204,210,217,255);
+}
+
 
 #general-study-table,
 #general-informational-table,
@@ -200,7 +217,6 @@ html, body {
 #general-communication-table td,
 #general-energy-table td,
 #general-software-table td {
-    background-color: rgba(153,196,240,255);
     border: 1px solid #ddd;
     padding: 4px;
     text-align: left;
@@ -212,29 +228,11 @@ html, body {
 #general-communication-table th,
 #general-energy-table th,
 #general-software-table th {
-    background-color: rgba(88,159,229,255);
     font-weight: bold;
     text-align: center;
 }
 
-#study-div,
-#informational-div,
-#communication-div,
-#energy-div {
-    display: none;
-    width: 25%;
-    height: auto;
-    position: absolute;
-    right: 0;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 8px;
-    opacity: 0.8;
-    z-index: 1001; /* Ensures it stays on top */
-    padding: 1px; /* Add padding for spacing */
-}
+
 
 #software-div {
     display: none;
@@ -255,6 +253,59 @@ html, body {
 
 
 
+
+#software-table th {
+    background-color: rgba(88,159,229,255);
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+#map-container {
+    position: relative;
+    width: 60%;
+    height: 100vh;
+}
+
+#general-div {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#general-div > div {
+    margin-bottom: 10px; /* Add spacing between the divs */
+    width: 100%; /* Ensure each div takes full width */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1px;
+}
+
+#study-div,
+#informational-div,
+#communication-div,
+#energy-div {
+    display: block; /* Ensure divs are displayed */
+    width: 100%; /* Ensure each div takes full width */
+    height: auto;
+    position: relative; /* Change to relative to avoid absolute positioning issues */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 8px 0; /* Add vertical margin for spacing */
+    opacity: 0.8;
+    z-index: 1001; /* Ensure it stays on top */
+    padding: 1px; /* Add padding for spacing */
+}
+
 #study-table,
 #informational-table,
 #communication-table,
@@ -263,8 +314,21 @@ html, body {
     border-collapse: collapse;
 }
 
+#study-table th,
+#informational-table th,
+#communication-table th,
+#energy-table th,
+#study-table td,
+#informational-table td,
+#communication-table td,
+#energy-table td {
+    background-color: rgba(153,196,240,255);
+    border: 1px solid #ddd;
+    padding: 4px;
+    text-align: left;
+    font-size: 0.85rem;
+}
 
-#software-table th,
 #study-table th,
 #informational-table th,
 #communication-table th,
@@ -274,14 +338,6 @@ html, body {
     text-align: center;
 }
 
-
-
-/* Main map container to occupy 75% of the screen */
-#map-container {
-    width: 60%;
-    height: 100vh;
-    position: relative;
-}
 
 /* Styling for the map */
 #map {

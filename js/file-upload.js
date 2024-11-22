@@ -87,42 +87,42 @@ uploadFileButton.addEventListener('click', () => {
 
             ////BACK HERE!
             // Position the communications-div relative to study-div
-            const logoContainer = document.getElementById('logo-container');
-            const studyDiv = document.getElementById('study-div');
-            const informationalDiv = document.getElementById('informational-div');
-            const communicationDiv = document.getElementById('communication-div');
-            const energyDiv = document.getElementById('energy-div');
-
-            function positionStudyDiv() {
-                const logoContainerRect = logoContainer.getBoundingClientRect();
-                studyDiv.style.position = 'absolute';
-                studyDiv.style.top = `${logoContainerRect.bottom + 1}px`; // 10px margin
-                studyDiv.style.right = `${logoContainer.right}px`;
-            }
-            function positionInformationalDiv() {
-                const studyDivRect = studyDiv.getBoundingClientRect();
-                informationalDiv.style.position = 'absolute';
-                informationalDiv.style.top = `${studyDivRect.bottom + 1}px`; // 10px margin
-                informationalDiv.style.right = `${studyDiv.right}px`;
-            }
-            function positionCommunicationDiv() {
-                const informationalDivRect = informationalDiv.getBoundingClientRect();
-                communicationDiv.style.position = 'absolute';
-                communicationDiv.style.top = `${informationalDivRect.bottom + 1}px`; // 10px margin
-                communicationDiv.style.right = `${informationalDiv.right}px`;
-            }
-            function positionEnergyDiv() {
-                const communicationDivRect = communicationDiv.getBoundingClientRect();
-                energyDiv.style.position = 'absolute';
-                energyDiv.style.top = `${communicationDivRect.bottom + 1}px`; // 10px margin
-                energyDiv.style.right = `${communicationDiv.right}px`;
-            }
-
-            // Initial positioning
-            positionStudyDiv()
-            positionInformationalDiv();
-            positionCommunicationDiv();
-            positionEnergyDiv();
+            // const logoContainer = document.getElementById('logo-container');
+            // const studyDiv = document.getElementById('study-div');
+            // const informationalDiv = document.getElementById('informational-div');
+            // const communicationDiv = document.getElementById('communication-div');
+            // const energyDiv = document.getElementById('energy-div');
+            //
+            // function positionStudyDiv() {
+            //     const logoContainerRect = logoContainer.getBoundingClientRect();
+            //     studyDiv.style.position = 'absolute';
+            //     studyDiv.style.top = `${logoContainerRect.bottom + 1}px`; // 10px margin
+            //     studyDiv.style.right = `${logoContainer.right}px`;
+            // }
+            // function positionInformationalDiv() {
+            //     const studyDivRect = studyDiv.getBoundingClientRect();
+            //     informationalDiv.style.position = 'absolute';
+            //     informationalDiv.style.top = `${studyDivRect.bottom + 1}px`; // 10px margin
+            //     informationalDiv.style.right = `${studyDiv.right}px`;
+            // }
+            // function positionCommunicationDiv() {
+            //     const informationalDivRect = informationalDiv.getBoundingClientRect();
+            //     communicationDiv.style.position = 'absolute';
+            //     communicationDiv.style.top = `${informationalDivRect.bottom + 1}px`; // 10px margin
+            //     communicationDiv.style.right = `${informationalDiv.right}px`;
+            // }
+            // function positionEnergyDiv() {
+            //     const communicationDivRect = communicationDiv.getBoundingClientRect();
+            //     energyDiv.style.position = 'absolute';
+            //     energyDiv.style.top = `${communicationDivRect.bottom + 1}px`; // 10px margin
+            //     energyDiv.style.right = `${communicationDiv.right}px`;
+            // }
+            //
+            // // Initial positioning
+            // positionStudyDiv()
+            // positionInformationalDiv();
+            // positionCommunicationDiv();
+            // positionEnergyDiv();
 
 
             // Hide or show divs based on regionId
