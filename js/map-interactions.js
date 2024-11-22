@@ -114,7 +114,6 @@ function initializeRegionSums() {
         minSum = Math.min(...Object.values(regionSums));
         maxSum = Math.max(...Object.values(regionSums));
     }
-    console.log(regionSums, minSum, maxSum);
 }
 
 function interpolateBlueColor(value, min, max) {
