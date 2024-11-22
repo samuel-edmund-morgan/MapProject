@@ -84,14 +84,90 @@ html, body {
     align-items: center;
     justify-content: center;
     z-index: 10000;
+    flex-direction: column;
+    padding: 0px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#info-div {
+    background-color: rgba(255, 255, 255, 1);
+    color: #333;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    text-align: justify;
+}
+
+#info-div p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 #upload-div {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 0px;
+    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
     text-align: center;
+}
+
+#upload-div button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#upload-div button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#upload-div button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+#greetings {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #275892;
+}
+
+#letter-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: justify;
+    text-indent: 2em; /* Add indentation for the first line of each paragraph */
+    margin-top: 1em; /* Add margin before the text */
+
+}
+
+#developer-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-align: right;
+    font-size: 1rem;
+    color: #275892;
+    margin-top: 10px;
 }
 
 
@@ -480,21 +556,3 @@ html, body {
     font-size: 14px; /* Decrease font size */
 }
 
-#upload-div {
-    width: 20%;
-    height: 10%;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #bedfff;
-    border: 1px solid #5597d3;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-    opacity: 0.8;
-    z-index: 1001;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
