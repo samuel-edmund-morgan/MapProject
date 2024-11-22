@@ -1,3 +1,51 @@
+/* Base font size for the document */
+html {
+    font-size: 1.5vw; /* 2% of the viewport width */
+}
+
+/* Adjust font size for smaller screens */
+@media (max-width: 600px) {
+    html {
+        font-size: 1vw; /* 4% of the viewport width */
+    }
+}
+
+/* Adjust font size for larger screens */
+@media (min-width: 1200px) {
+    html {
+        font-size: 1vw; /* 1.5% of the viewport width */
+    }
+}
+
+/* Example of applying responsive font size to elements */
+body, h1, h2, h3, h4, h5, h6, p, .logo-text, #region-name-div h3, #sidebar h3 {
+    font-size: 1rem; /* Use the base font size defined in html */
+}
+
+
+#resources-header {
+    font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
+    background-color: rgba(22,96,130,255);
+    color: white;
+    padding: 6px; /* Optional: Add padding for spacing */
+    text-align: center; /* Center text horizontally */
+    /* margin: 0.85rem; */
+    margin-top: 1vw;
+    margin-left: 0.5vw;
+    font-weight: 900!important;
+    font-size: 2rem!important;
+}
+
+#resources-header h3{
+    font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
+    background-color: rgba(22,96,130,255);
+    color: white;
+    font-weight: 900!important;
+    font-size: 1.2rem!important;
+}
+
+
+
 /* Font settings */
 @font-face {
     font-family: 'Montserrat';
@@ -49,34 +97,27 @@ html, body {
 
 #left-sidebar {
     width: 20%;
-    height: 75%;
+    height: 83%;
     position: relative;
     left: 0;
     top: 0;
     background-color: #f0f0f0;
     border-right: 1px solid #ccc;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    padding: 10px;
+    /*padding: 10px;*/
+    padding: 0.5vw;
     overflow-y: auto;
     z-index: 1000;
 }
 
-#left-sidebar h3 {
-    font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
-    font-weight: 700;
-    color: #275892; /* Text color */
-    text-align: center; /* Center text horizontally */
-    margin: 0; /* Reset default margin */
-    padding: 10px 0; /* Add padding for spacing */
-    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; /* Text strokes */
-}
+
 
 #general-ammunition-div {
     position: absolute;
-    bottom: 5px;
-    left: 10px;
+    bottom: 0px;
+    left: 0.3%;
     width: 33%;
-    height: 20%;
+    height: 17%;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -93,15 +134,13 @@ html, body {
 
 #general-ammunition-table th,
 #general-ammunition-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+    background-color: rgba(78,148,218,255); /* Custom background color */
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #ddd; /* Add border for better separation */
+    padding: 8px; /* Add padding for spacing */
 }
 
-#general-ammunition-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-}
 
 #software-table {
     width: 100%;
@@ -133,12 +172,14 @@ html, body {
 #general-communication-div,
 #general-energy-div,
 #general-software-div {
-    margin-bottom: 5px;
+    margin-left: 0.5vw;
+    margin-top: 0.65vw;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 6px;
+
 }
 
 #general-study-table,
@@ -159,9 +200,11 @@ html, body {
 #general-communication-table td,
 #general-energy-table td,
 #general-software-table td {
+    background-color: rgba(153,196,240,255);
     border: 1px solid #ddd;
-    padding: 2px;
+    padding: 4px;
     text-align: left;
+    font-size: 0.85rem;
 }
 
 #general-study-table th,
@@ -169,7 +212,7 @@ html, body {
 #general-communication-table th,
 #general-energy-table th,
 #general-software-table th {
-    background-color: #f2f2f2;
+    background-color: rgba(88,159,229,255);
     font-weight: bold;
     text-align: center;
 }
