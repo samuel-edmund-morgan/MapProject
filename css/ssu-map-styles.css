@@ -250,6 +250,7 @@ html, body {
     width: 100%;
     height: 100%;
     z-index: 0; /* Lower z-index for the map */
+    background-color: rgba(255,255,255,255);
 }
 
 /* Container for logo and text */
@@ -261,7 +262,7 @@ html, body {
     display: flex;
     align-items: center;
     padding: 10px; /* Add padding for spacing */
-    background-color: rgba(251, 244, 236, 0.7); /* Set background color */
+    background-color: rgba(255,255,255,0.4); /* Set background color */
     border-radius: 8px; /* Round the corners */
     height: auto;
     width: auto;
@@ -284,15 +285,16 @@ html, body {
 /* Sidebar styling */
 #sidebar {
     width: 20%;
-    height: 95vh; /* Adjust to give room for rounded corners */
-    padding: 20px;
+    height: 100%; /* Adjust to give room for rounded corners */
+    padding: 10px;
     background-color: #bedfff;
     color: #333;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     overflow-y: auto;
     border-left: 1px solid #5597d3;
-    border-radius: 15px; /* Rounded corners */
+    border: 2px solid #275892;
+    /*border-radius: 15px; !* Rounded corners *!*/
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for appeal */
     margin: 0; /* Space around sidebar for rounded corners */
 }
@@ -307,22 +309,23 @@ html, body {
 /* Letterbox styling for each list item */
 #region-list li {
     padding: 10px;
-    margin: 10px 0;
+    font-size: 0.85rem;
+    margin: 0px 0;
     border: 1px solid #5597d3;
-    border-radius: 5px;
+    border-radius: 0px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     color: #275892;
     font-weight: 700;
-    text-align: center;
+    text-align: left;
 }
 
 /* Background colors for alternating items */
 #region-list li:nth-child(odd) {
-    background-color: #7bbfff;
+    background-color: rgba(65,164,255,255)
 }
 
 #region-list li:nth-child(even) {
-    background-color: #bedfff;
+    background-color: rgba(160,209,255,255);
 }
 
 /* Hover effect for each item */
