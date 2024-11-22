@@ -1,3 +1,51 @@
+/* Base font size for the document */
+html {
+    font-size: 1.5vw; /* 2% of the viewport width */
+}
+
+/* Adjust font size for smaller screens */
+@media (max-width: 600px) {
+    html {
+        font-size: 1vw; /* 4% of the viewport width */
+    }
+}
+
+/* Adjust font size for larger screens */
+@media (min-width: 1200px) {
+    html {
+        font-size: 1vw; /* 1.5% of the viewport width */
+    }
+}
+
+/* Example of applying responsive font size to elements */
+body, h1, h2, h3, h4, h5, h6, p, .logo-text, #region-name-div h3, #sidebar h3 {
+    font-size: 1rem; /* Use the base font size defined in html */
+}
+
+
+#resources-header {
+    font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
+    background-color: rgba(22,96,130,255);
+    color: white;
+    padding: 6px; /* Optional: Add padding for spacing */
+    text-align: center; /* Center text horizontally */
+    /* margin: 0.85rem; */
+    /*margin-top: 1vw;*/
+    margin-left: 0.5vw;
+    font-weight: 900!important;
+    font-size: 2rem!important;
+}
+
+#resources-header h3{
+    font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
+    background-color: rgba(22,96,130,255);
+    color: white;
+    font-weight: 900!important;
+    font-size: 1.2rem!important;
+}
+
+
+
 /* Font settings */
 @font-face {
     font-family: 'Montserrat';
@@ -24,25 +72,400 @@ html, body {
     display: flex;
 }
 
-/* Main map container to occupy 75% of the screen */
-#map-container {
-    width: 75%;
-    height: 100vh;
-    position: relative;
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    flex-direction: column;
+    padding: 0px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
 }
+
+#info-div {
+    background-color: rgba(255, 255, 255, 1);
+    color: #333;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    text-align: justify;
+}
+
+#info-div p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+#upload-div {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 0px;
+    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#upload-div button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#upload-div button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#upload-div button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+#greetings {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #275892;
+}
+
+#letter-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: justify;
+    text-indent: 2em; /* Add indentation for the first line of each paragraph */
+    margin-top: 1em; /* Add margin before the text */
+
+}
+
+#developer-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-align: right;
+    font-size: 1rem;
+    color: #275892;
+    margin-top: 10px;
+}
+
+
+#left-sidebar {
+    width: 20%;
+    height: 83%;
+    position: relative;
+    left: 0;
+    top: 0;
+    background-color: #f0f0f0;
+    border-right: 1px solid #ccc;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    /*padding: 10px;*/
+    padding: 0.5vw;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+
+
+
+
+#general-ammunition-div {
+    position: absolute;
+    bottom: 0px;
+    left: 0.3%;
+    width: 33%;
+    height: 17%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 2px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+#general-ammunition-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#general-ammunition-table th,
+#general-ammunition-table td {
+    background-color: rgba(78,148,218,255); /* Custom background color */
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #ddd; /* Add border for better separation */
+    padding: 8px; /* Add padding for spacing */
+}
+
+
+#software-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#software-table th,
+#software-table td,
+#study-table th,
+#study-table td,
+#informational-table th,
+#informational-table td,
+#communication-table th,
+#communication-table td,
+#energy-table th,
+#energy-table td {
+    background-color: rgba(153,196,240,255);
+    border: 1px solid #ddd;
+    padding: 4px;
+    text-align: left;
+    font-size: 0.85rem;
+
+}
+
+#general-study-div,
+#general-informational-div,
+#general-communication-div,
+#general-energy-div,
+#general-software-div {
+    margin-left: 0.5vw;
+    margin-top: 0.65vw;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    padding: 6px;
+}
+
+#left-sidebar th {
+    background-color: rgba(204,210,217,255);
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#left-sidebar tbody tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+#left-sidebar tbody tr:nth-child(even) {
+    background-color: rgba(204,210,217,255);
+}
+
+
+#general-study-table,
+#general-informational-table,
+#general-communication-table,
+#general-energy-table,
+#general-software-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#general-study-table th,
+#general-informational-table th,
+#general-communication-table th,
+#general-energy-table th,
+#general-study-table td,
+#general-informational-table td,
+#general-communication-table td,
+#general-energy-table td,
+#general-software-table td {
+    border: 1px solid #ddd;
+    padding: 4px;
+    text-align: left;
+    font-size: 0.85rem;
+}
+
+#general-study-table th,
+#general-informational-table th,
+#general-communication-table th,
+#general-energy-table th,
+#general-software-table th {
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+#software-div {
+    display: none;
+    position: absolute;
+    top: 15%;
+    left: 20px; /* 20% width of left-sidebar + 20px margin */
+    width: 33%;
+    height: auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    opacity: 0.8;
+    padding: 1px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+
+
+
+#software-table th {
+    background-color: rgba(88,159,229,255);
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+#map-container {
+    position: relative;
+    width: 60%;
+    height: 100vh;
+}
+
+#general-div {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#general-div > div {
+    margin-bottom: 10px; /* Add spacing between the divs */
+    width: 100%; /* Ensure each div takes full width */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1px;
+}
+
+#study-div,
+#informational-div,
+#communication-div,
+#energy-div {
+    display: block; /* Ensure divs are displayed */
+    width: 100%; /* Ensure each div takes full width */
+    height: auto;
+    position: relative; /* Change to relative to avoid absolute positioning issues */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 8px 0; /* Add vertical margin for spacing */
+    opacity: 0.8;
+    z-index: 1001; /* Ensure it stays on top */
+    padding: 1px; /* Add padding for spacing */
+}
+
+#study-table,
+#informational-table,
+#communication-table,
+#energy-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#study-table th,
+#informational-table th,
+#communication-table th,
+#energy-table th,
+#study-table td,
+#informational-table td,
+#communication-table td,
+#energy-table td {
+    background-color: rgba(153,196,240,255);
+    border: 1px solid #ddd;
+    padding: 4px;
+    text-align: left;
+    font-size: 0.85rem;
+}
+
+#study-table th,
+#informational-table th,
+#communication-table th,
+#energy-table th {
+    background-color: rgba(88,159,229,255);
+    font-weight: bold;
+    text-align: center;
+}
+
+
+/* Styling for the map */
+#map {
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Lower z-index for the map */
+    background-color: rgba(255,255,255,255);
+}
+
+/* Container for logo and text */
+#logo-container {
+    position: absolute;
+    top: 20px;
+    right: 0px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    padding: 5px; /* Add padding for spacing */
+    background-color: rgba(255,255,255,0.4); /* Set background color */
+    border-radius: 8px; /* Round the corners */
+    height: 10vh;
+    width: 10vw;
+}
+
+#logo-container img {
+    width: 40%;
+    height: auto;
+    margin-right: 5px;
+}
+
+.logo-text {
+    font-weight: 800;
+    color: #275892;
+    text-align: left;
+    font-size: 0.85vw;
+}
+
+
 
 /* Sidebar styling */
 #sidebar {
-    width: 25%;
-    height: 95vh; /* Adjust to give room for rounded corners */
-    padding: 20px;
+    width: 20%;
+    height: 100%; /* Adjust to give room for rounded corners */
+    padding: 10px;
     background-color: #bedfff;
     color: #333;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     overflow-y: auto;
     border-left: 1px solid #5597d3;
-    border-radius: 15px; /* Rounded corners */
+    border: 2px solid #275892;
+    /*border-radius: 15px; !* Rounded corners *!*/
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for appeal */
     margin: 0; /* Space around sidebar for rounded corners */
 }
@@ -57,22 +480,23 @@ html, body {
 /* Letterbox styling for each list item */
 #region-list li {
     padding: 10px;
-    margin: 10px 0;
+    font-size: 0.85rem;
+    margin: 0px 0;
     border: 1px solid #5597d3;
-    border-radius: 5px;
+    border-radius: 0px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     color: #275892;
     font-weight: 700;
-    text-align: center;
+    text-align: left;
 }
 
 /* Background colors for alternating items */
 #region-list li:nth-child(odd) {
-    background-color: #7bbfff;
+    background-color: rgba(65,164,255,255)
 }
 
 #region-list li:nth-child(even) {
-    background-color: #bedfff;
+    background-color: rgba(160,209,255,255);
 }
 
 /* Hover effect for each item */
@@ -82,105 +506,20 @@ html, body {
     background-color: #a2d8ff; /* Slightly lighter shade on hover */
 }
 
-/* Styling for the map */
-#map {
-    width: 100%;
-    height: 100%;
-    z-index: 0; /* Lower z-index for the map */
-}
 
-/* Container for logo and text */
-.logo-container {
+
+
+
+#region-name-div {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-    margin-right: 20px;
-    padding: 10px; /* Add padding for spacing */
-    background-color: rgba(251, 244, 236, 0.7); /* Set background color */
-    border-radius: 8px; /* Round the corners */
-}
-
-.logo-container img {
-    width: 80px;
-    height: auto;
-    margin-right: 20px;
-}
-
-.logo-text {
-    font-weight: 700;
-    color: #275892;
-    text-align: left;
-}
-
-
-#bottom-right-div {
-    width: 33%;
-    height: 33%;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background-color: #bedfff;
-    border: 1px solid #5597d3;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-    opacity: 0.8;
-    z-index: 1001; /* Ensures it stays on top */
-}
-
-#bottom-left-div {
-    width: 40%;
-    height: 50%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: #bedfff;
-    border: 1px solid #5597d3;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-    opacity: 0.8;
-    z-index: 1001; /* Ensures it stays on top */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#pie-chart-canvas {
-    width: 100% !important;
-    height: 100% !important;
-}
-
-#top-center-div {
-    width: 33%;
-    height: 33%;
-    position: absolute;
-    top: 0;
+    top: 0px;
     left: 50%;
-    transform: translateX(-50%); /* Center the div horizontally */
-    background-color: #bedfff;
-    border: 1px solid #5597d3;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-    opacity: 0.8;
-    z-index: 1001; /* Ensures it stays on top */
-}
-
-
-#top-left-div {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 25%;
+    transform: translateX(-50%);
+    width: 50%;
     height: 10%;
-    background-color: #bedfff; /* Match sidebar background */
+    background-color: rgba(208,226,245,255);
     border: 1px solid #5597d3; /* Stroke color */
-    border-radius: 8px; /* Rounded corners */
+    border-radius: 0px; /* Rounded corners */
     opacity: 0.8;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Light shadow */
     z-index: 1001; /* Ensure it's above the map */
@@ -193,55 +532,27 @@ html, body {
     font-size: 16px;
     font-weight: bold;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    margin-left: 5%;
 }
 
-
-
-
-
-
-
-
-#top-left-div h3 {
+#region-name-div h3 {
     font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
-    font-weight: 700;
-    color: #275892; /* Text color */
+    font-weight: 500;
+    color: #000; /* Change text color to black */
+    font-size: 1.8rem; /* Increase font size */
+    text-shadow: none; /* Remove text strokes */
     text-align: center; /* Center text horizontally */
     margin: 0; /* Reset default margin */
     padding: 10px 0; /* Add padding for spacing */
-    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; /* Text strokes */
 }
-
-
-
 
 
 #sidebar h3 {
     font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
-    font-weight: 700;
-    color: #275892; /* Text color */
-    text-align: center; /* Center text horizontally */
-    margin: 0; /* Reset default margin */
+    font-weight: 300; /* Decrease font weight */
+    color: #000; /* Text color */
+    text-align: left; /* Align text to the left */
+    margin: 0 0 0 10px; /* Add left margin */
     padding: 10px 0; /* Add padding for spacing */
-    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; /* Text strokes */
+    font-size: 14px; /* Decrease font size */
 }
 
-#bottom-center-div {
-    width: 20%;
-    height: 10%;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #bedfff;
-    border: 1px solid #5597d3;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-    opacity: 0.8;
-    z-index: 1001;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}

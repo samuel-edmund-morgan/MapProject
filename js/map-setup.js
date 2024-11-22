@@ -1,32 +1,37 @@
-// map-setup.js
+// js/map-setup.js
 
-const map = L.map('map', {
-    zoomControl: false,
-    maxZoom: 7,
-    minZoom: 5,
-    zoom: 5,
-    preferCanvas: true,
-    continuousWorld: true,
-    noWrap: false
-});
+let map;
+let bounds_group;
 
-L.tileLayer('Tiles/{z}/{x}/{y}.png', {
-    maxZoom: 7,
-    minZoom: 5,
-    noWrap: true,
-    updateWhenIdle: true,
-    keepBuffer: 400
-}).addTo(map);
+function initializeMap() {
+    map = L.map('map', {
+        zoomControl: false,
+        maxZoom: 10,
+        minZoom: 5,
+        zoom: 6,
+        preferCanvas: true,
+        continuousWorld: true,
+        noWrap: false
+    });
 
-const zoomControl = L.control.zoom({
-    position: 'topleft'
-});
+    L.tileLayer('Tiles/{z}/{x}/{y}.png', {
+        maxZoom: 10,
+        minZoom: 5,
+        noWrap: true,
+        updateWhenIdle: true,
+        keepBuffer: 400
+    }).addTo(map);
 
-zoomControl.addTo(map);
-const bounds_group = new L.featureGroup([]);
+    const zoomControl = L.control.zoom({
+        position: 'topleft'
+    });
 
-function setBounds() {
-    map.setMaxBounds(map.getBounds());
+    zoomControl.addTo(map);
+    bounds_group = new L.featureGroup([]);
+
+    function setBounds() {
+        map.setMaxBounds(map.getBounds());
+    }
+
+    map.setView([48.3794, 31.1656], 6);
 }
-
-map.setView([48.3794, 31.1656], 5);

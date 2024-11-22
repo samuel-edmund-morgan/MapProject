@@ -11,12 +11,102 @@
     <link rel="stylesheet" href="css/fontawesome-all.min.css">
     <link rel="stylesheet" href="css/ssu-map-styles.css">
     <script src="data/ukr_admbnda_adm1_sspe_20240416_0.js"></script>
-    <title>Мапа розподілу</title>
+    <title>Мапа візуалізації статистичних даних</title>
 </head>
 <body>
+<div id="overlay">
+    <div id="info-div">
+        <p id="greetings">Вітаю!</p>
+        <p id="letter-text">Цей проєкт створено для візуалізації звітів на основі статистичних даних. Сайт (сервер) не зберігає жодної інформації, не містить баз даних і нічого не відправляє в Інтернет. Браузер фактично є “програвачем” даних, які йому надаються. Подібно до того, як відеоплеєр слугує для відтворення відеофайлів, браузер обробляє програми, написані для нього. Завантаження “програми” відбувається під час входу на вебсайт, а завантаження та обробка Excel-таблиці здійснюються виключно на вашому комп’ютері (в браузері), без жодного зв’язку з Інтернетом або будь-якими базами даних. Це можна перевірити, просто оновивши сторінку, відключивши Інтернет або зайшовши на вебсайт з іншого пристрою. Жодних даних на інших пристроях чи в Інтернеті немає і не може бути. Шаблон Excel-таблиці для заповнення ви можете завантажити за посиланням:</p>
+        <a id="download-link" href="path/to/your/file" download>Завантажити шаблон</a>
+        <p id="developer-name">Самуель Морґан</p>
+        <div id="upload-div">
+            <button id="select-file">Обрати файл з даними</button>
+            <button id="upload-file" disabled>Завантажити обраний файл</button>
+        </div>
+    </div>
+</div>
+<div id="left-sidebar">
+    <div id="resources-header">
+        <h3>Ресурси СБУ</h3>
+    </div>
+    <div id="general-software-div">
+        <table id="general-software-table">
+            <thead>
+            <tr>
+                <th colspan="2"></th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div id="general-informational-div">
+        <table id="general-informational-table">
+            <thead>
+            <tr>
+                <th colspan="2"></th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div id="general-energy-div">
+        <table id="general-energy-table">
+            <thead>
+            <tr>
+                <th colspan="2"></th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div id="general-study-div">
+        <table id="general-study-table">
+            <thead>
+            <tr>
+                <th colspan="2"></th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div id="general-communication-div">
+        <table id="general-communication-table">
+            <thead>
+            <tr>
+                <th colspan="2"></th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+<div id="general-ammunition-div">
+    <table id="general-ammunition-table">
+        <thead>
+        <tr>
+            <th colspan="2"></th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
 <div id="map-container">
     <div id="map"></div>
-    <div class="logo-container">
+    <div id="region-name-div">
+        <h3 id="region-name">Служба безпеки України</h3>
+    </div>
+    <div id="software-div">
+        <table id="software-table">
+            <thead>
+            <tr>
+                <th colspan="2"></th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div id="logo-container">
         <img src="images/logo.png" alt="Logo">
         <div class="logo-text">
             <div>СЛУЖБА</div>
@@ -24,19 +114,47 @@
             <div>УКРАЇНИ</div>
         </div>
     </div>
-    <!--<div id="top-center-div"></div>-->
-    <div id="bottom-left-div">
-        <canvas id="pie-chart-canvas" width="600" height="600"></canvas>
-    </div>
-    <div id="bottom-right-div">
-        <canvas id="column-chart-canvas" width="800" height="800"></canvas>
-    </div>
-    <div id="bottom-center-div">
-        <button id="select-file">Обрати файл з даними</button>
-        <button id="upload-file" disabled>Завантажити обраний файл</button>
-    </div>
-    <div id="top-left-div">
-        <h3 id="region-name">Служба безпеки України</h3>
+    <div id="general-div">
+        <div id="study-div">
+            <table id="study-table">
+                <thead>
+                <tr>
+                    <th colspan="2"></th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="informational-div">
+            <table id="informational-table">
+                <thead>
+                <tr>
+                    <th colspan="2"></th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="communication-div">
+            <table id="communication-table">
+                <thead>
+                <tr>
+                    <th colspan="2"></th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="energy-div">
+            <table id="energy-table">
+                <thead>
+                <tr>
+                    <th colspan="2"></th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
     <div></div>
 </div>
@@ -46,8 +164,6 @@
         <ul id="regions"></ul>
     </div>
 </div>
-<script src="js/lib/chart.js"></script>
-<script src="js/lib/chartjs-plugin-datalabels.js"></script>
 <script src="js/lib/qgis2web_expressions.js"></script>
 <script src="js/lib/leaflet.js"></script>
 <script src="js/lib/leaflet.rotatedMarker.js"></script>
@@ -57,12 +173,11 @@
 <script src="js/lib/rbush.min.js"></script>
 <script src="js/lib/labelgun.min.js"></script>
 <script src="js/lib/labels.js"></script>
-
 <script src="js/lib/xlsx.full.min.js"></script>
 <script src="js/map-setup.js"></script>
 <script src="js/map-interactions.js"></script>
-<script src="js/region-list.js"></script>
-<script src="js/charts.js"></script>
 <script src="js/file-upload.js"></script>
+<script src="js/tables.js"></script>
+<script src="data/variables.js"></script>
 </body>
 </html>
