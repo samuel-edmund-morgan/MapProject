@@ -71,6 +71,10 @@ function highlightFeature(e) {
     populateColumnTable(communicationsSheet, regionId, communicationTable);
     populateColumnTable(energySheet, regionId, energyTable);
 
+
+
+
+
     // Hide or show divs based on regionId
     const divsToToggle = ['software-div', 'study-div', 'informational-div', 'communication-div', 'energy-div'];
     divsToToggle.forEach(divId => {

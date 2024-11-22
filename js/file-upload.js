@@ -85,6 +85,7 @@ uploadFileButton.addEventListener('click', () => {
             populateColumnTable(communicationsSheet, regionId, communicationTable);
             populateColumnTable(energySheet, regionId, energyTable);
 
+            ////BACK HERE!
             // Position the communications-div relative to study-div
             const logoContainer = document.getElementById('logo-container');
             const studyDiv = document.getElementById('study-div');
