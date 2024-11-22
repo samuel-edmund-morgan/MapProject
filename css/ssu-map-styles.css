@@ -30,7 +30,7 @@ body, h1, h2, h3, h4, h5, h6, p, .logo-text, #region-name-div h3, #sidebar h3 {
     padding: 6px; /* Optional: Add padding for spacing */
     text-align: center; /* Center text horizontally */
     /* margin: 0.85rem; */
-    margin-top: 1vw;
+    /*margin-top: 1vw;*/
     margin-left: 0.5vw;
     font-weight: 900!important;
     font-size: 2rem!important;
