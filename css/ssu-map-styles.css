@@ -103,41 +103,28 @@ html, body {
     font-weight: bold;
 }
 
-
-#software-div {
-    display: none;
-    position: absolute;
-    top: 15%;
-    left: 20px; /* 20% width of left-sidebar + 20px margin */
-    width: 33%;
-    height: auto;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    overflow-y: auto;
-    z-index: 1000;
-}
-
 #software-table {
     width: 100%;
     border-collapse: collapse;
 }
 
 #software-table th,
-#software-table td {
+#software-table td,
+#study-table th,
+#study-table td,
+#informational-table th,
+#informational-table td,
+#communication-table th,
+#communication-table td,
+#energy-table th,
+#energy-table td {
+    background-color: rgba(153,196,240,255);
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 4px;
     text-align: left;
+    font-size: 0.85rem;
+
 }
-
-#software-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-}
-
-
 
 
 
@@ -184,6 +171,7 @@ html, body {
 #general-software-table th {
     background-color: #f2f2f2;
     font-weight: bold;
+    text-align: center;
 }
 
 #study-div,
@@ -202,8 +190,26 @@ html, body {
     margin: 8px;
     opacity: 0.8;
     z-index: 1001; /* Ensures it stays on top */
-    padding: 6px; /* Add padding for spacing */
+    padding: 1px; /* Add padding for spacing */
 }
+
+#software-div {
+    display: none;
+    position: absolute;
+    top: 15%;
+    left: 20px; /* 20% width of left-sidebar + 20px margin */
+    width: 33%;
+    height: auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    opacity: 0.8;
+    padding: 1px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
 
 
 #study-table,
@@ -214,27 +220,16 @@ html, body {
     border-collapse: collapse;
 }
 
-#study-table th,
-#informational-table th,
-#communication-table th,
-#energy-table th,
-#study-table td,
-#informational-table td,
-#communication-table td,
-#energy-table td {
-    border: 1px solid #ddd;
-    padding: 6px;
-    text-align: left;
-}
 
+#software-table th,
 #study-table th,
 #informational-table th,
 #communication-table th,
 #energy-table th {
-    background-color: #f2f2f2;
+    background-color: rgba(88,159,229,255);
     font-weight: bold;
+    text-align: center;
 }
-
 
 
 
@@ -257,27 +252,28 @@ html, body {
 #logo-container {
     position: absolute;
     top: 20px;
-    right: 20px;
+    right: 0px;
     z-index: 1000;
     display: flex;
     align-items: center;
-    padding: 10px; /* Add padding for spacing */
+    padding: 5px; /* Add padding for spacing */
     background-color: rgba(255,255,255,0.4); /* Set background color */
     border-radius: 8px; /* Round the corners */
-    height: auto;
-    width: auto;
+    height: 10vh;
+    width: 10vw;
 }
 
 #logo-container img {
-    width: 80px;
+    width: 40%;
     height: auto;
-    margin-right: 20px;
+    margin-right: 5px;
 }
 
 .logo-text {
-    font-weight: 700;
+    font-weight: 800;
     color: #275892;
     text-align: left;
+    font-size: 0.85vw;
 }
 
 
@@ -341,14 +337,14 @@ html, body {
 
 #region-name-div {
     position: absolute;
-    top: 20px;
+    top: 0px;
     left: 50%;
     transform: translateX(-50%);
-    width: 25%;
+    width: 50%;
     height: 10%;
-    background-color: #bedfff; /* Match sidebar background */
+    background-color: rgba(208,226,245,255);
     border: 1px solid #5597d3; /* Stroke color */
-    border-radius: 8px; /* Rounded corners */
+    border-radius: 0px; /* Rounded corners */
     opacity: 0.8;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Light shadow */
     z-index: 1001; /* Ensure it's above the map */
@@ -365,23 +361,24 @@ html, body {
 
 #region-name-div h3 {
     font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
-    font-weight: 700;
-    color: #275892; /* Text color */
+    font-weight: 500;
+    color: #000; /* Change text color to black */
+    font-size: 1.8rem; /* Increase font size */
+    text-shadow: none; /* Remove text strokes */
     text-align: center; /* Center text horizontally */
     margin: 0; /* Reset default margin */
     padding: 10px 0; /* Add padding for spacing */
-    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; /* Text strokes */
 }
 
 
 #sidebar h3 {
     font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
-    font-weight: 700;
-    color: #275892; /* Text color */
-    text-align: center; /* Center text horizontally */
-    margin: 0; /* Reset default margin */
+    font-weight: 300; /* Decrease font weight */
+    color: #000; /* Text color */
+    text-align: left; /* Align text to the left */
+    margin: 0 0 0 10px; /* Add left margin */
     padding: 10px 0; /* Add padding for spacing */
-    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; /* Text strokes */
+    font-size: 14px; /* Decrease font size */
 }
 
 #upload-div {

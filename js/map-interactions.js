@@ -28,9 +28,12 @@ function resetHoverFeature(e) {
 }
 const zoomLevels = {
     "0": 5,
+    "1": 8,
     "25": 9,
     ...Array.from({ length: 24 }, (_, i) => i + 1).reduce((acc, id) => {
-        acc[id] = 6;
+        if (id !== 1) {
+            acc[id] = 7;
+        }
         return acc;
     }, {})
 };
@@ -59,6 +62,9 @@ function highlightFeature(e) {
     });
 
     const zoomLevel = zoomLevels[regionId] || 7;
+    console.log('Zoom levels:', zoomLevels);
+    console.log('Region ID:', regionId);
+    console.log('Zoom level:', zoomLevel);
     const regionName = e.target.feature.properties['SSU'];
     regionNameElement.textContent = regionName || "Служба безпеки України";
 
