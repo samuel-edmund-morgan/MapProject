@@ -11,8 +11,8 @@ function highlightOnHoverFeature(e) {
     if (e.target !== highlightLayer) {
         e.target.setStyle({
             color: 'rgb(212,143,121)',
-            fillColor: 'rgba(0,87,184,1.0)',
-            fillOpacity: 0.5
+            // fillColor: 'rgba(0,87,184,1.0)',
+            fillOpacity: 0.8
         });
     }
 }
@@ -20,8 +20,9 @@ function resetHoverFeature(e) {
     if (e.target !== highlightLayer) {
         e.target.setStyle({
             color: 'rgb(212,143,121)',
-            fillColor: 'rgba(14,107,191,1.0)',
-            fillOpacity: 1
+            // fillColor: 'rgba(14,107,191,1.0)',
+            fillOpacity: 1,
+            weight: 1,
         });
     }
 }
@@ -43,16 +44,18 @@ function highlightFeature(e) {
     if (highlightLayer) {
         highlightLayer.setStyle({
             color: 'rgb(212,143,121)',
-            fillColor: 'rgba(14,107,191,1.0)',
-            fillOpacity: 1
+            // fillColor: 'rgba(14,107,191,1.0)',
+            fillOpacity: 1,
+            weight: 1,
         });
     }
 
     highlightLayer = e.target;
     highlightLayer.setStyle({
         color: 'rgb(212,143,121)',
-        fillColor: 'rgba(0,87,184,1.0)',
-        fillOpacity: 1
+        // fillColor: 'rgba(0,87,184,1.0)',
+        fillOpacity: 1,
+        weight: 3,
     });
 
     const zoomLevel = zoomLevels[regionId] || 7;
@@ -79,30 +82,57 @@ function highlightFeature(e) {
 
 }
 
-const layer_ukr_admbnda_adm1_sspe_20240416_0 = new L.geoJson(json_ukr_admbnda_adm1_sspe_20240416_0, {
-    attribution: '',
-    interactive: true,
-    keepBuffer: 8,
-    dataVar: 'json_ukr_admbnda_adm1_sspe_20240416_0',
-    layerName: 'layer_ukr_admbnda_adm1_sspe_20240416_0',
-    pane: 'pane_ukr_admbnda_adm1_sspe_20240416_0',
-    onEachFeature: pop_ukr_admbnda_adm1_sspe_20240416_0,
-    style: style_ukr_admbnda_adm1_sspe_20240416_0_0,
-});
 
-function pop_ukr_admbnda_adm1_sspe_20240416_0(feature, layer) {
-    layer.on({
-        click: highlightFeature,
-        mouseover: highlightOnHoverFeature,
-        mouseout: resetHoverFeature
+
+
+//Testing
+// Calculate the sum of category integers for each region, excluding regionId = 0
+let regionSums = {};
+let minSum = 0;
+let maxSum = 0;
+
+function calculateRegionSums() {
+
+    Object.keys(excelData).forEach(sheetName => {
+        const sheet = excelData[sheetName];
+        Object.keys(sheet.regions).forEach(regionId => {
+            if (regionId === '0') return; // Skip regionId = 0
+            const region = sheet.regions[regionId];
+            const sum = region.values.reduce((acc, valueObj) => acc + valueObj.value, 0);
+            if (!regionSums[regionId]) {
+                regionSums[regionId] = 0;
+            }
+            regionSums[regionId] += sum;
+        });
     });
+
+    // Remove any undefined keys
+    delete regionSums.undefined;
+
+    return regionSums;
+}
+
+function initializeRegionSums() {
+    regionSums = calculateRegionSums();
+    if (Object.keys(regionSums).length > 0) {
+        minSum = Math.min(...Object.values(regionSums));
+        maxSum = Math.max(...Object.values(regionSums));
+    }
+    console.log(regionSums, minSum, maxSum);
+}
+
+function interpolateBlueColor(value, min, max) {
+    const ratio = (value - min) / (max - min);
+    const blue = Math.round(255 * (1- ratio));
+    const lightBlue = 120; // Adjust this value to set the lightest blue
+    return `rgba(0,0,${lightBlue + blue},1.0)`;
 }
 
 
-
-
-function style_ukr_admbnda_adm1_sspe_20240416_0_0() {
-    //console.log('style_ukr_admbnda_adm1_sspe_20240416_0_0');
+function style_ukr_admbnda_adm1_sspe_20240416_0_0(feature) {
+    const regionId = feature.properties['id'];
+    const sum = regionSums[regionId] || '0';
+    const fillColor = interpolateBlueColor(sum, minSum, maxSum);
 
     return {
         pane: 'pane_ukr_admbnda_adm1_sspe_20240416_0',
@@ -114,14 +144,35 @@ function style_ukr_admbnda_adm1_sspe_20240416_0_0() {
         weight: 2.0,
         fill: true,
         fillOpacity: 1,
-        fillColor: 'rgba(14,107,191,1.0)',
-        interactive: true,
+        //fillColor: 'rgba(14,107,191,1.0)',
+        fillColor: fillColor,
+        interactive: true
     }
 }
 
-map.createPane('pane_ukr_admbnda_adm1_sspe_20240416_0');
-map.getPane('pane_ukr_admbnda_adm1_sspe_20240416_0').style.zIndex = 400;
-map.getPane('pane_ukr_admbnda_adm1_sspe_20240416_0').style['mix-blend-mode'] = 'normal';
-bounds_group.addLayer(layer_ukr_admbnda_adm1_sspe_20240416_0);
-map.addLayer(layer_ukr_admbnda_adm1_sspe_20240416_0);
-setBounds();
+
+// const layer_ukr_admbnda_adm1_sspe_20240416_0 = new L.geoJson(json_ukr_admbnda_adm1_sspe_20240416_0, {
+//     attribution: '',
+//     interactive: true,
+//     keepBuffer: 8,
+//     dataVar: 'json_ukr_admbnda_adm1_sspe_20240416_0',
+//     layerName: 'layer_ukr_admbnda_adm1_sspe_20240416_0',
+//     pane: 'pane_ukr_admbnda_adm1_sspe_20240416_0',
+//     onEachFeature: pop_ukr_admbnda_adm1_sspe_20240416_0,
+//     style: style_ukr_admbnda_adm1_sspe_20240416_0_0,
+// });
+
+function pop_ukr_admbnda_adm1_sspe_20240416_0(feature, layer) {
+    layer.on({
+        click: highlightFeature,
+        mouseover: highlightOnHoverFeature,
+        mouseout: resetHoverFeature
+    });
+}
+
+// map.createPane('pane_ukr_admbnda_adm1_sspe_20240416_0');
+// map.getPane('pane_ukr_admbnda_adm1_sspe_20240416_0').style.zIndex = 400;
+// map.getPane('pane_ukr_admbnda_adm1_sspe_20240416_0').style['mix-blend-mode'] = 'normal';
+// bounds_group.addLayer(layer_ukr_admbnda_adm1_sspe_20240416_0);
+// // map.addLayer(layer_ukr_admbnda_adm1_sspe_20240416_0);
+// setBounds();

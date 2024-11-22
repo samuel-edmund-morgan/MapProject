@@ -1,5 +1,6 @@
 // file-upload.js
 
+
 const selectFileButton = document.getElementById('select-file');
 const uploadFileButton = document.getElementById('upload-file');
 const fileInput = document.createElement('input');
@@ -136,6 +137,49 @@ uploadFileButton.addEventListener('click', () => {
                 positionCommunicationDiv();
                 positionEnergyDiv();
             });
+
+            initializeRegionSums();
+            // Initialize the map and add the layer
+            initializeMap();
+
+            const layer_ukr_admbnda_adm1_sspe_20240416_0 = new L.geoJson(json_ukr_admbnda_adm1_sspe_20240416_0, {
+                attribution: '',
+                interactive: true,
+                keepBuffer: 8,
+                dataVar: 'json_ukr_admbnda_adm1_sspe_20240416_0',
+                layerName: 'layer_ukr_admbnda_adm1_sspe_20240416_0',
+                onEachFeature: pop_ukr_admbnda_adm1_sspe_20240416_0,
+                style: style_ukr_admbnda_adm1_sspe_20240416_0_0,
+            });
+
+            function populateRegionList() {
+                const regionList = document.getElementById('regions');
+                layer_ukr_admbnda_adm1_sspe_20240416_0.eachLayer(function(layer) {
+                    const regionName = layer.feature.properties['SSU'];
+                    if (regionName) {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = regionName;
+                        listItem.style.cursor = 'pointer';
+                        listItem.onclick = function() {
+                            highlightFeature({ target: layer });
+                        };
+                        regionList.appendChild(listItem);
+                    }
+                });
+            }
+
+            map.createPane('pane_ukr_admbnda_adm1_sspe_20240416_0');
+            map.getPane('pane_ukr_admbnda_adm1_sspe_20240416_0').style.zIndex = 400;
+            map.getPane('pane_ukr_admbnda_adm1_sspe_20240416_0').style['mix-blend-mode'] = 'normal';
+            bounds_group.addLayer(layer_ukr_admbnda_adm1_sspe_20240416_0);
+            map.addLayer(layer_ukr_admbnda_adm1_sspe_20240416_0);
+            map.setMaxBounds(map.getBounds());
+            //setBounds();
+
+            initializeRegionSums();
+
+            populateRegionList();
+
 
         };
         reader.readAsArrayBuffer(selectedFile);
