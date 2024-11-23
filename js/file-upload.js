@@ -85,7 +85,7 @@ uploadFileButton.addEventListener('click', () => {
 
 
             // Hide or show divs based on regionId
-            const divsToToggle = ['software-div', 'study-div', 'informational-div', 'communication-div', 'energy-div'];
+            const divsToToggle = ['region-name-div', 'software-div', 'study-div', 'informational-div', 'communication-div', 'energy-div'];
             divsToToggle.forEach(divId => {
                 document.getElementById(divId).style.display = regionId === 0 ? 'none' : 'block';
             });
@@ -104,19 +104,34 @@ uploadFileButton.addEventListener('click', () => {
                 style: style_ukr_admbnda_adm1_sspe_20240416_0_0,
             });
 
+
             function populateRegionList() {
                 const regionList = document.getElementById('regions');
+                const layers = [];
+
                 layer_ukr_admbnda_adm1_sspe_20240416_0.eachLayer(function (layer) {
                     const regionName = layer.feature.properties['SSU'];
                     if (regionName) {
-                        const listItem = document.createElement('li');
-                        listItem.textContent = regionName;
-                        listItem.style.cursor = 'pointer';
-                        listItem.onclick = function () {
-                            highlightFeature({target: layer});
-                        };
-                        regionList.appendChild(listItem);
+                        layers.push({ regionName, layer });
                     }
+                });
+
+                // Keep the first element as it is and swap the second and third elements
+                const firstLayer = layers[0];
+                const secondLayer = layers[2];
+                const thirdLayer = layers[1];
+                const remainingLayers = layers.slice(3).sort((a, b) => a.regionName.localeCompare(b.regionName));
+
+                const sortedLayers = [firstLayer, secondLayer, thirdLayer, ...remainingLayers];
+
+                sortedLayers.forEach(({ regionName, layer }) => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = regionName;
+                    listItem.style.cursor = 'pointer';
+                    listItem.onclick = function () {
+                        highlightFeature({ target: layer });
+                    };
+                    regionList.appendChild(listItem);
                 });
             }
 

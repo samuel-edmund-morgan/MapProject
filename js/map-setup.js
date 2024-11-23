@@ -7,20 +7,22 @@ function initializeMap() {
     map = L.map('map', {
         zoomControl: false,
         maxZoom: 10,
-        minZoom: 5,
+        minZoom: 4,
         zoom: 6,
         preferCanvas: true,
         continuousWorld: true,
         noWrap: false
     });
 
+
     L.tileLayer('Tiles/{z}/{x}/{y}.png', {
         maxZoom: 10,
         minZoom: 5,
         noWrap: true,
-        updateWhenIdle: true,
-        keepBuffer: 800
+        updateWhenIdle: false,
+        keepBuffer: 100
     }).addTo(map);
+
 
     const zoomControl = L.control.zoom({
         position: 'topleft'
@@ -29,7 +31,7 @@ function initializeMap() {
     zoomControl.addTo(map);
     bounds_group = new L.featureGroup([]);
 
-    map.setView([48.3794, 31.1656], 5);
+    map.setView([48.3794, 31.1656], 4);
     map.setMaxBounds(map.getBounds());
     map.setView([48.3794, 31.1656], 6);
 }

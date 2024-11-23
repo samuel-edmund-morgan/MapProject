@@ -83,7 +83,7 @@ function highlightFeature(e) {
 
 
     // Hide or show divs based on regionId
-    const divsToToggle = ['software-div', 'study-div', 'informational-div', 'communication-div', 'energy-div'];
+    const divsToToggle = ['region-name-div', 'software-div', 'study-div', 'informational-div', 'communication-div', 'energy-div'];
     divsToToggle.forEach(divId => {
         document.getElementById(divId).style.display = regionId === '0' ? 'none' : 'block';
     });
