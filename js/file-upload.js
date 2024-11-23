@@ -116,11 +116,13 @@ uploadFileButton.addEventListener('click', () => {
                     }
                 });
 
-                // Keep the first three elements as they are
-                const firstThreeLayers = layers.slice(0, 3);
+                // Keep the first element as it is and swap the second and third elements
+                const firstLayer = layers[0];
+                const secondLayer = layers[2];
+                const thirdLayer = layers[1];
                 const remainingLayers = layers.slice(3).sort((a, b) => a.regionName.localeCompare(b.regionName));
 
-                const sortedLayers = [...firstThreeLayers, ...remainingLayers];
+                const sortedLayers = [firstLayer, secondLayer, thirdLayer, ...remainingLayers];
 
                 sortedLayers.forEach(({ regionName, layer }) => {
                     const listItem = document.createElement('li');
