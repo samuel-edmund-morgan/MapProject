@@ -14,13 +14,15 @@ function initializeMap() {
         noWrap: false
     });
 
+
     L.tileLayer('Tiles/{z}/{x}/{y}.png', {
         maxZoom: 10,
         minZoom: 5,
         noWrap: true,
-        updateWhenIdle: true,
-        keepBuffer: 800
+        updateWhenIdle: false,
+        keepBuffer: 100
     }).addTo(map);
+
 
     const zoomControl = L.control.zoom({
         position: 'topleft'
