@@ -135,6 +135,24 @@ uploadFileButton.addEventListener('click', () => {
                 });
             }
 
+
+
+            layer_ukr_admbnda_adm1_sspe_20240416_0.eachLayer(function(layer) {
+                layer.bindTooltip(
+                    (layer.feature.properties['ADM1_UA'] !== null
+                        ? String('<div style="color: #ffffff; font-size: 0.85rem; font-weight: bold; font-family: \'Montserrat\', sans-serif; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">' + layer.feature.properties['ADM1_UA']) + '</div>'
+                        : ''),
+                    {
+                        direction: "right",
+                        sticky: true,
+                        permanent: false,
+                        offset: [0, 0],
+                        className: 'css_ukr_admbnda_adm1_sspe_20240416_0'
+                    }
+                );
+            });
+
+
             map.createPane('pane_ukr_admbnda_adm1_sspe_20240416_0');
             map.getPane('pane_ukr_admbnda_adm1_sspe_20240416_0').style.zIndex = 400;
             map.getPane('pane_ukr_admbnda_adm1_sspe_20240416_0').style['mix-blend-mode'] = 'normal';
@@ -144,6 +162,7 @@ uploadFileButton.addEventListener('click', () => {
             initializeRegionSums();
 
             populateRegionList();
+
 
 
         };
