@@ -23,12 +23,12 @@ uploadFileButton.addEventListener('click', () => {
         const reader = new FileReader();
         reader.onload = (e) => {
             const data = new Uint8Array(e.target.result);
-            const workbook = XLSX.read(data, { type: 'array' });
+            const workbook = XLSX.read(data, {type: 'array'});
 
             workbook.SheetNames.forEach((sheetName) => {
                 const worksheet = workbook.Sheets[sheetName];
                 const mainCategory = worksheet['C1'] ? worksheet['C1'].v : 'Unknown Category';
-                const sheetData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+                const sheetData = XLSX.utils.sheet_to_json(worksheet, {header: 1});
                 const categoryNames = sheetData[1].slice(2);
 
                 const sheetObj = {
@@ -84,7 +84,6 @@ uploadFileButton.addEventListener('click', () => {
             populateColumnTable(energySheet, regionId, energyTable);
 
 
-
             // Hide or show divs based on regionId
             const divsToToggle = ['software-div', 'study-div', 'informational-div', 'communication-div', 'energy-div'];
             divsToToggle.forEach(divId => {
@@ -107,14 +106,14 @@ uploadFileButton.addEventListener('click', () => {
 
             function populateRegionList() {
                 const regionList = document.getElementById('regions');
-                layer_ukr_admbnda_adm1_sspe_20240416_0.eachLayer(function(layer) {
+                layer_ukr_admbnda_adm1_sspe_20240416_0.eachLayer(function (layer) {
                     const regionName = layer.feature.properties['SSU'];
                     if (regionName) {
                         const listItem = document.createElement('li');
                         listItem.textContent = regionName;
                         listItem.style.cursor = 'pointer';
-                        listItem.onclick = function() {
-                            highlightFeature({ target: layer });
+                        listItem.onclick = function () {
+                            highlightFeature({target: layer});
                         };
                         regionList.appendChild(listItem);
                     }
@@ -127,7 +126,7 @@ uploadFileButton.addEventListener('click', () => {
             bounds_group.addLayer(layer_ukr_admbnda_adm1_sspe_20240416_0);
             map.addLayer(layer_ukr_admbnda_adm1_sspe_20240416_0);
             //map.setMaxBounds(map.getBounds());
-            //setBounds();
+            // setBounds();
 
             initializeRegionSums();
 

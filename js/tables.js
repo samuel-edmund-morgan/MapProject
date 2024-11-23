@@ -25,6 +25,7 @@ function populateColumnTable(sheetIndex, regionId, tableBody) {
         }
     }
 }
+
 function populateSoftwareTable(regionId, tableBody, isGeneral) {
     tableBody.innerHTML = '';
 
@@ -46,7 +47,8 @@ function populateSoftwareTable(regionId, tableBody, isGeneral) {
 // Determine categoriesString based on isGeneral
         const categoriesString = isGeneral
             ? "Програмні продукти"
-            : "Програмні продукти (" + regionDataAllPrograms.values.map(valueObj => valueObj.category).join(', ') + ")";        const totalValue = regionDataAllPrograms.values.reduce((acc, valueObj) => acc + valueObj.value, 0);
+            : "Програмні продукти (" + regionDataAllPrograms.values.map(valueObj => valueObj.category).join(', ') + ")";
+        const totalValue = regionDataAllPrograms.values.reduce((acc, valueObj) => acc + valueObj.value, 0);
         const totalRow = document.createElement('tr');
         totalRow.innerHTML = `<td>${categoriesString}</td><td>${totalValue}</td>`;
         tableBody.appendChild(totalRow);

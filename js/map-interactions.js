@@ -1,13 +1,25 @@
 // noinspection TypeScriptUMDGlobal
 // map-interactions.js
 
-
-
+//Testing
+// Calculate the sum of category integers for each region, excluding regionId = 0
+let regionSums = {};
+let minSum = 0;
+let maxSum = 0;
 let highlightLayer;
 const regionNameElement = document.getElementById('region-name');
 let lastRegionId = null; // Track the last selected region
-
-
+const zoomLevels = {
+    "0": 6,
+    "1": 8,
+    "25": 9,
+    ...Array.from({length: 24}, (_, i) => i + 1).reduce((acc, id) => {
+        if (id !== 1) {
+            acc[id] = 7;
+        }
+        return acc;
+    }, {})
+};
 
 function highlightOnHoverFeature(e) {
 
@@ -19,6 +31,7 @@ function highlightOnHoverFeature(e) {
     }
 
 }
+
 function resetHoverFeature(e) {
 
     if (e.target !== highlightLayer) {
@@ -30,17 +43,7 @@ function resetHoverFeature(e) {
     }
 
 }
-const zoomLevels = {
-    "0": 6,
-    "1": 8,
-    "25": 9,
-    ...Array.from({ length: 24 }, (_, i) => i + 1).reduce((acc, id) => {
-        if (id !== 1) {
-            acc[id] = 7;
-        }
-        return acc;
-    }, {})
-};
+
 function highlightFeature(e) {
 
     const regionId = e.target.feature.properties['id'];
@@ -79,9 +82,6 @@ function highlightFeature(e) {
     populateColumnTable(energySheet, regionId, energyTable);
 
 
-
-
-
     // Hide or show divs based on regionId
     const divsToToggle = ['software-div', 'study-div', 'informational-div', 'communication-div', 'energy-div'];
     divsToToggle.forEach(divId => {
@@ -90,15 +90,7 @@ function highlightFeature(e) {
 
 }
 
-
-//Testing
-// Calculate the sum of category integers for each region, excluding regionId = 0
-let regionSums = {};
-let minSum = 0;
-let maxSum = 0;
-
 function calculateRegionSums() {
-
     Object.keys(excelData).forEach(sheetName => {
         const sheet = excelData[sheetName];
         Object.keys(sheet.regions).forEach(regionId => {
@@ -118,7 +110,6 @@ function calculateRegionSums() {
 }
 
 function initializeRegionSums() {
-
     regionSums = calculateRegionSums();
     if (Object.keys(regionSums).length > 0) {
         minSum = Math.min(...Object.values(regionSums));
@@ -129,12 +120,11 @@ function initializeRegionSums() {
 function interpolateBlueColor(value, min, max) {
 
     const ratio = (value - min) / (max - min);
-    const blue = Math.round(255 * (1- ratio));
+    const blue = Math.round(255 * (1 - ratio));
     const lightBlue = 120; // Adjust this value to set the lightest blue
 
     return `rgba(0,0,${lightBlue + blue},1.0)`;
 }
-
 
 function style_ukr_admbnda_adm1_sspe_20240416_0_0(feature) {
 
@@ -156,6 +146,7 @@ function style_ukr_admbnda_adm1_sspe_20240416_0_0(feature) {
         interactive: true
     }
 }
+
 function pop_ukr_admbnda_adm1_sspe_20240416_0(feature, layer) {
 
     layer.on({

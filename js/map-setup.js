@@ -29,9 +29,7 @@ function initializeMap() {
     zoomControl.addTo(map);
     bounds_group = new L.featureGroup([]);
 
-    function setBounds() {
-        map.setMaxBounds(map.getBounds());
-    }
-
+    map.setView([48.3794, 31.1656], 5);
+    map.setMaxBounds(map.getBounds());
     map.setView([48.3794, 31.1656], 6);
 }
