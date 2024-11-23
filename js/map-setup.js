@@ -7,7 +7,7 @@ function initializeMap() {
     map = L.map('map', {
         zoomControl: false,
         maxZoom: 10,
-        minZoom: 5,
+        minZoom: 4,
         zoom: 6,
         preferCanvas: true,
         continuousWorld: true,
@@ -31,7 +31,7 @@ function initializeMap() {
     zoomControl.addTo(map);
     bounds_group = new L.featureGroup([]);
 
-    map.setView([48.3794, 31.1656], 5);
+    map.setView([48.3794, 31.1656], 4);
     map.setMaxBounds(map.getBounds());
     map.setView([48.3794, 31.1656], 6);
 }

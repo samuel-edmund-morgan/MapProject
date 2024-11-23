@@ -498,6 +498,7 @@ html, body {
 
 
 #region-name-div {
+    display: none;
     position: absolute;
     top: 0;
     left: 50%;
@@ -511,7 +512,7 @@ html, body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Light shadow */
     z-index: 1001; /* Ensure it's above the map */
     padding: 4px; /* Adds padding around content */
-    display: flex;
+    /*display: flex;*/
     align-items: center; /* Center text vertically */
     justify-content: center; /* Center text horizontally */
     color: #275892;
