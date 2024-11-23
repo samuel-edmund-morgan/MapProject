@@ -125,8 +125,6 @@ uploadFileButton.addEventListener('click', () => {
             map.getPane('pane_ukr_admbnda_adm1_sspe_20240416_0').style['mix-blend-mode'] = 'normal';
             bounds_group.addLayer(layer_ukr_admbnda_adm1_sspe_20240416_0);
             map.addLayer(layer_ukr_admbnda_adm1_sspe_20240416_0);
-            //map.setMaxBounds(map.getBounds());
-            // setBounds();
 
             initializeRegionSums();
 

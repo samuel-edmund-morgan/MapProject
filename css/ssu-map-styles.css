@@ -25,25 +25,24 @@ body, h1, h2, h3, h4, h5, h6, p, .logo-text, #region-name-div h3, #sidebar h3 {
 
 #resources-header {
     font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
-    background-color: rgba(22,96,130,255);
+    background-color: rgba(22, 96, 130, 255);
     color: white;
     padding: 6px; /* Optional: Add padding for spacing */
     text-align: center; /* Center text horizontally */
     /* margin: 0.85rem; */
     /*margin-top: 1vw;*/
     margin-left: 0.5vw;
-    font-weight: 900!important;
-    font-size: 2rem!important;
+    font-weight: 900 !important;
+    font-size: 2rem !important;
 }
 
-#resources-header h3{
+#resources-header h3 {
     font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
-    background-color: rgba(22,96,130,255);
+    background-color: rgba(22, 96, 130, 255);
     color: white;
-    font-weight: 900!important;
-    font-size: 1.2rem!important;
+    font-weight: 900 !important;
+    font-size: 1.2rem !important;
 }
-
 
 
 /* Font settings */
@@ -85,7 +84,7 @@ html, body {
     justify-content: center;
     z-index: 10000;
     flex-direction: column;
-    padding: 0px;
+    padding: 0;
     color: white;
     font-family: 'Montserrat', sans-serif;
 }
@@ -110,7 +109,7 @@ html, body {
 #upload-div {
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
-    padding: 0px;
+    padding: 0;
     /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
     display: flex;
     gap: 10px;
@@ -187,12 +186,9 @@ html, body {
 }
 
 
-
-
-
 #general-ammunition-div {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     left: 0.3%;
     width: 33%;
     height: 17%;
@@ -212,7 +208,7 @@ html, body {
 
 #general-ammunition-table th,
 #general-ammunition-table td {
-    background-color: rgba(78,148,218,255); /* Custom background color */
+    background-color: rgba(78, 148, 218, 255); /* Custom background color */
     font-weight: bold;
     text-align: center;
     border: 1px solid #ddd; /* Add border for better separation */
@@ -235,7 +231,7 @@ html, body {
 #communication-table td,
 #energy-table th,
 #energy-table td {
-    background-color: rgba(153,196,240,255);
+    background-color: rgba(153, 196, 240, 255);
     border: 1px solid #ddd;
     padding: 4px;
     text-align: left;
@@ -259,7 +255,7 @@ html, body {
 }
 
 #left-sidebar th {
-    background-color: rgba(204,210,217,255);
+    background-color: rgba(204, 210, 217, 255);
     font-weight: bold;
     text-align: center;
     border: 1px solid #ddd;
@@ -271,7 +267,7 @@ html, body {
 }
 
 #left-sidebar tbody tr:nth-child(even) {
-    background-color: rgba(204,210,217,255);
+    background-color: rgba(204, 210, 217, 255);
 }
 
 
@@ -279,7 +275,7 @@ html, body {
 #general-informational-table,
 #general-communication-table,
 #general-energy-table,
-#general-software-table{
+#general-software-table {
     width: 100%;
     border-collapse: collapse;
 }
@@ -309,7 +305,6 @@ html, body {
 }
 
 
-
 #software-div {
     display: none;
     position: absolute;
@@ -328,14 +323,11 @@ html, body {
 }
 
 
-
-
 #software-table th {
-    background-color: rgba(88,159,229,255);
+    background-color: rgba(88, 159, 229, 255);
     font-weight: bold;
     text-align: center;
 }
-
 
 
 #map-container {
@@ -398,7 +390,7 @@ html, body {
 #informational-table td,
 #communication-table td,
 #energy-table td {
-    background-color: rgba(153,196,240,255);
+    background-color: rgba(153, 196, 240, 255);
     border: 1px solid #ddd;
     padding: 4px;
     text-align: left;
@@ -409,7 +401,7 @@ html, body {
 #informational-table th,
 #communication-table th,
 #energy-table th {
-    background-color: rgba(88,159,229,255);
+    background-color: rgba(88, 159, 229, 255);
     font-weight: bold;
     text-align: center;
 }
@@ -420,19 +412,19 @@ html, body {
     width: 100%;
     height: 100%;
     z-index: 0; /* Lower z-index for the map */
-    background-color: rgba(255,255,255,255);
+    background-color: rgba(255, 255, 255, 255);
 }
 
 /* Container for logo and text */
 #logo-container {
     position: absolute;
     top: 20px;
-    right: 0px;
+    right: 0;
     z-index: 1000;
     display: flex;
     align-items: center;
     padding: 5px; /* Add padding for spacing */
-    background-color: rgba(255,255,255,0.4); /* Set background color */
+    background-color: rgba(255, 255, 255, 0.4); /* Set background color */
     border-radius: 8px; /* Round the corners */
     height: 10vh;
     width: 10vw;
@@ -452,7 +444,6 @@ html, body {
 }
 
 
-
 /* Sidebar styling */
 #sidebar {
     width: 20%;
@@ -463,7 +454,6 @@ html, body {
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     overflow-y: auto;
-    border-left: 1px solid #5597d3;
     border: 2px solid #275892;
     /*border-radius: 15px; !* Rounded corners *!*/
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for appeal */
@@ -481,9 +471,9 @@ html, body {
 #region-list li {
     padding: 10px;
     font-size: 0.85rem;
-    margin: 0px 0;
+    margin: 0 0;
     border: 1px solid #5597d3;
-    border-radius: 0px;
+    border-radius: 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     color: #275892;
     font-weight: 700;
@@ -492,11 +482,11 @@ html, body {
 
 /* Background colors for alternating items */
 #region-list li:nth-child(odd) {
-    background-color: rgba(65,164,255,255)
+    background-color: rgba(65, 164, 255, 255)
 }
 
 #region-list li:nth-child(even) {
-    background-color: rgba(160,209,255,255);
+    background-color: rgba(160, 209, 255, 255);
 }
 
 /* Hover effect for each item */
@@ -507,19 +497,16 @@ html, body {
 }
 
 
-
-
-
 #region-name-div {
     position: absolute;
-    top: 0px;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 50%;
     height: 10%;
-    background-color: rgba(208,226,245,255);
+    background-color: rgba(208, 226, 245, 255);
     border: 1px solid #5597d3; /* Stroke color */
-    border-radius: 0px; /* Rounded corners */
+    border-radius: 0; /* Rounded corners */
     opacity: 0.8;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Light shadow */
     z-index: 1001; /* Ensure it's above the map */
