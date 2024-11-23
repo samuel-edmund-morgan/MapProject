@@ -104,19 +104,32 @@ uploadFileButton.addEventListener('click', () => {
                 style: style_ukr_admbnda_adm1_sspe_20240416_0_0,
             });
 
+
             function populateRegionList() {
                 const regionList = document.getElementById('regions');
+                const layers = [];
+
                 layer_ukr_admbnda_adm1_sspe_20240416_0.eachLayer(function (layer) {
                     const regionName = layer.feature.properties['SSU'];
                     if (regionName) {
-                        const listItem = document.createElement('li');
-                        listItem.textContent = regionName;
-                        listItem.style.cursor = 'pointer';
-                        listItem.onclick = function () {
-                            highlightFeature({target: layer});
-                        };
-                        regionList.appendChild(listItem);
+                        layers.push({ regionName, layer });
                     }
+                });
+
+                // Keep the first three elements as they are
+                const firstThreeLayers = layers.slice(0, 3);
+                const remainingLayers = layers.slice(3).sort((a, b) => a.regionName.localeCompare(b.regionName));
+
+                const sortedLayers = [...firstThreeLayers, ...remainingLayers];
+
+                sortedLayers.forEach(({ regionName, layer }) => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = regionName;
+                    listItem.style.cursor = 'pointer';
+                    listItem.onclick = function () {
+                        highlightFeature({ target: layer });
+                    };
+                    regionList.appendChild(listItem);
                 });
             }
 
