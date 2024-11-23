@@ -1,6 +1,8 @@
 // noinspection TypeScriptUMDGlobal
 // map-interactions.js
 
+
+
 let highlightLayer;
 const regionNameElement = document.getElementById('region-name');
 let lastRegionId = null; // Track the last selected region
@@ -8,14 +10,17 @@ let lastRegionId = null; // Track the last selected region
 
 
 function highlightOnHoverFeature(e) {
+
     if (e.target !== highlightLayer) {
         e.target.setStyle({
             color: 'rgb(212,143,121)',
             fillOpacity: 0.8
         });
     }
+
 }
 function resetHoverFeature(e) {
+
     if (e.target !== highlightLayer) {
         e.target.setStyle({
             color: 'rgb(212,143,121)',
@@ -23,6 +28,7 @@ function resetHoverFeature(e) {
             weight: 1,
         });
     }
+
 }
 const zoomLevels = {
     "0": 6,
@@ -36,6 +42,7 @@ const zoomLevels = {
     }, {})
 };
 function highlightFeature(e) {
+
     const regionId = e.target.feature.properties['id'];
     if (regionId === lastRegionId) return;
     lastRegionId = regionId;
@@ -91,6 +98,7 @@ let minSum = 0;
 let maxSum = 0;
 
 function calculateRegionSums() {
+
     Object.keys(excelData).forEach(sheetName => {
         const sheet = excelData[sheetName];
         Object.keys(sheet.regions).forEach(regionId => {
@@ -103,12 +111,14 @@ function calculateRegionSums() {
             regionSums[regionId] += sum;
         });
     });
+
     // Remove any undefined keys
     delete regionSums.undefined;
     return regionSums;
 }
 
 function initializeRegionSums() {
+
     regionSums = calculateRegionSums();
     if (Object.keys(regionSums).length > 0) {
         minSum = Math.min(...Object.values(regionSums));
@@ -117,14 +127,17 @@ function initializeRegionSums() {
 }
 
 function interpolateBlueColor(value, min, max) {
+
     const ratio = (value - min) / (max - min);
     const blue = Math.round(255 * (1- ratio));
     const lightBlue = 120; // Adjust this value to set the lightest blue
+
     return `rgba(0,0,${lightBlue + blue},1.0)`;
 }
 
 
 function style_ukr_admbnda_adm1_sspe_20240416_0_0(feature) {
+
     const regionId = feature.properties['id'];
     const sum = regionSums[regionId] || '0';
     const fillColor = interpolateBlueColor(sum, minSum, maxSum);
@@ -144,6 +157,7 @@ function style_ukr_admbnda_adm1_sspe_20240416_0_0(feature) {
     }
 }
 function pop_ukr_admbnda_adm1_sspe_20240416_0(feature, layer) {
+
     layer.on({
         click: highlightFeature,
         mouseover: highlightOnHoverFeature,

@@ -1,5 +1,8 @@
 // tables.js
+
+
 function populateColumnTable(sheetIndex, regionId, tableBody) {
+
     tableBody.innerHTML = '';
 
     const sheetNames = Object.keys(excelData);

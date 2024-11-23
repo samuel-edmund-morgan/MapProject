@@ -1,6 +1,4 @@
 // file-upload.js
-
-
 const selectFileButton = document.getElementById('select-file');
 const uploadFileButton = document.getElementById('upload-file');
 const fileInput = document.createElement('input');
@@ -91,14 +89,6 @@ uploadFileButton.addEventListener('click', () => {
             const divsToToggle = ['software-div', 'study-div', 'informational-div', 'communication-div', 'energy-div'];
             divsToToggle.forEach(divId => {
                 document.getElementById(divId).style.display = regionId === 0 ? 'none' : 'block';
-            });
-
-            // Reposition on window resize
-            window.addEventListener('resize', () => {
-                positionStudyDiv();
-                positionInformationalDiv();
-                positionCommunicationDiv();
-                positionEnergyDiv();
             });
 
             initializeRegionSums();

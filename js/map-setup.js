@@ -1,9 +1,9 @@
 // js/map-setup.js
-
 let map;
 let bounds_group;
 
 function initializeMap() {
+
     map = L.map('map', {
         zoomControl: false,
         maxZoom: 10,
@@ -19,7 +19,7 @@ function initializeMap() {
         minZoom: 5,
         noWrap: true,
         updateWhenIdle: true,
-        keepBuffer: 400
+        keepBuffer: 800
     }).addTo(map);
 
     const zoomControl = L.control.zoom({
