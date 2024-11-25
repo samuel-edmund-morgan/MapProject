@@ -62,7 +62,7 @@ function highlightFeature(e) {
     highlightLayer.setStyle({
         color: 'rgb(212,143,121)',
         fillOpacity: 1,
-        weight: 3,
+        weight: 12,
     });
 
     const zoomLevel = zoomLevels[regionId] || 7;
