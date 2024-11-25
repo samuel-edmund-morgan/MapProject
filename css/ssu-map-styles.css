@@ -150,7 +150,7 @@ html, body {
     margin-top: 10px;
 }
 
-/* Left sidebar */
+/*!* Left sidebar *!*/
 #left-sidebar {
     width: 20%;
     height: 83%;
@@ -171,6 +171,21 @@ html, body {
     text-align: center;
     border: 1px solid #ddd;
     padding: 8px;
+}
+
+/* Ensure consistent table layout and cell styling */
+#left-sidebar table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Ensure consistent cell width */
+}
+
+#left-sidebar th, #left-sidebar td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle; /* Ensure vertical alignment */
+    word-wrap: break-word; /* Ensure text wraps within cells */
 }
 
 #left-sidebar tbody tr:nth-child(odd) {
@@ -222,10 +237,18 @@ html, body {
 #general-energy-table td,
 #general-software-table td {
     border: 1px solid #ddd;
-    padding: 4px;
+    padding: 2px;
     text-align: left;
     font-size: 0.85rem;
 }
+#general-study-table td:nth-child(2),
+#general-informational-table td:nth-child(2),
+#general-communication-table td:nth-child(2),
+#general-energy-table td:nth-child(2),
+#general-software-table td:nth-child(2) {
+    text-align: center;
+}
+
 
 /* General ammunition div */
 #general-ammunition-div {
@@ -387,6 +410,16 @@ html, body {
     font-weight: bold;
     text-align: center;
 }
+
+#study-table td:nth-child(2),
+#informational-table td:nth-child(2),
+#communication-table td:nth-child(2),
+#energy-table td:nth-child(2),
+#software-table td:nth-child(2) {
+    text-align: center;
+}
+
+
 
 /* Logo container */
 #logo-container {
