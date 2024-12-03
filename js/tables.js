@@ -42,12 +42,13 @@ function populateSoftwareTable(regionId, tableBody, isGeneral) {
     if (regionDataAllPrograms) {
         // Filter out elements where value is zero
         regionDataAllPrograms.values = regionDataAllPrograms.values.filter(valueObj => valueObj.value !== 0);
+        console.log(regionDataAllPrograms);
 
         // Row of different software products in one ROW
 // Determine categoriesString based on isGeneral
         const categoriesString = isGeneral
             ? "Програмні продукти"
-            : "Програмні продукти (" + regionDataAllPrograms.values.map(valueObj => valueObj.category).join(', ') + ")";
+            : "Програмні продукти (" + regionDataAllPrograms.values.map(valueObj => `${valueObj.category} - ${valueObj.value}`).join(', ') + ")";
         const totalValue = regionDataAllPrograms.values.reduce((acc, valueObj) => acc + valueObj.value, 0);
         const totalRow = document.createElement('tr');
         totalRow.innerHTML = `<td>${categoriesString}</td><td>${totalValue}</td>`;
