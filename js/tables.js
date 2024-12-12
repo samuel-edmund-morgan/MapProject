@@ -47,7 +47,7 @@ function populateSoftwareTable(regionId, tableBody, isGeneral) {
         // Row of different software products in one ROW
 // Determine categoriesString based on isGeneral
         const categoriesString = isGeneral
-            ? "Програмні продукти"
+            ? "Програмні продукти (Microsoft Windows-273, Microsoft Office 365 E5-1788, i2 Analyst Notebook-100, Hunchly-36, NexusXplore-9, Sayari-3, ClearView AI-5, ClarityProject-3, Shodan-2, Marine Traffic-2, Flight Radar-2, Osavul-43, MindManager-53, Adobe Creative Cloud-80)"
             : "Програмні продукти (" + regionDataAllPrograms.values.map(valueObj => `${valueObj.category} - ${valueObj.value}`).join(', ') + ")";
         const totalValue = regionDataAllPrograms.values.reduce((acc, valueObj) => acc + valueObj.value, 0);
         const totalRow = document.createElement('tr');

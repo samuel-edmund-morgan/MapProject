@@ -179,7 +179,7 @@ html, body {
 
 /* Ensure consistent table layout and cell styling */
 #left-sidebar table {
-    width: 100%;
+    /*width: 100%;*/
     border-collapse: collapse;
     table-layout: fixed; /* Ensure consistent cell width */
 }
@@ -221,15 +221,40 @@ html, body {
     padding: 1px;
 }
 
-/* General tables */
+/*!* General tables *!*/
+/*#general-study-table,*/
+/*#general-informational-table,*/
+/*#general-communication-table,*/
+/*#general-energy-table{*/
+/*    width: 100%;*/
+/*    border-collapse: collapse;*/
+/*}*/
+#general-software-table,
 #general-study-table,
 #general-informational-table,
 #general-communication-table,
-#general-energy-table,
-#general-software-table {
-    width: 100%;
-    border-collapse: collapse;
+#general-energy-table {
+    width: 100%; /* Ensure the table fits within its container */
+    table-layout: fixed; /* Ensure consistent cell width */
 }
+
+#general-software-table col:first-child,
+#general-study-table col:first-child,
+#general-informational-table col:first-child,
+#general-communication-table col:first-child,
+#general-energy-table col:first-child {
+    width: 70%; /* Set the width of the first column */
+}
+
+#general-software-table col:last-child,
+#general-study-table col:last-child,
+#general-informational-table col:last-child,
+#general-communication-table col:last-child,
+#general-energy-table col:last-child {
+    width: 30%; /* Set the width of the second column */
+}
+
+
 
 #general-study-table th,
 #general-informational-table th,
@@ -250,6 +275,7 @@ html, body {
     text-align: left;
     font-size: 0.85rem;
 }
+
 #general-study-table td:nth-child(2),
 #general-informational-table td:nth-child(2),
 #general-communication-table td:nth-child(2),
