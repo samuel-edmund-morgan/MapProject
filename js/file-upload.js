@@ -14,6 +14,7 @@ fileInput.onchange = (event) => {
     }
 };
 
+
 selectFileButton.addEventListener('click', () => {
     fileInput.click();
 });
